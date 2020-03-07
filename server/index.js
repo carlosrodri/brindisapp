@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     }
 })
 
-//app.use(cors())
+app.use(cors())
 
 const {
     mongoose
