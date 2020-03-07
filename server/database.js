@@ -16,12 +16,30 @@ client.connect(err => {
   client.close();
 });*/
 
+const connectDB = async () => {
+  try {
+  const connection = await mongoose.connect(
+  URI,
+  {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+  }
+  )
+  console.log('MongoDB connected: ${connection.connection.host}');
+  } catch (error) {
+  console.log('MongoDB error when connecting: ${error}');
+  }
+  }
+  connectDB()
 
-mongoose.connect(URI, {useNewUrlParser: true, useUnifiedTopology: true})
+
+/*mongoose.connect(URI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((db) => {
     console.log('DB is connected');
 }).catch((err) => {
     console.error(err);
-});
+});*/
 
 module.exports = mongoose;
