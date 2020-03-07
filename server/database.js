@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 /*'mongodb://localhost/bar'*/ 
 const URIM = 'mongodb+srv://admin:abc.52106@cluster0-ekfve.mongodb.net/test?retryWrites=true&w=majority';
-const URI = 'mongodb://admin:abc.52106@SG-brindis-31778.servers.mongodirector.com:51690,SG-brindis-31779.servers.mongodirector.com:51690,SG-brindis-31780.servers.mongodirector.com:51690/admin?replicaSet=RS-brindis-0&ssl=true'
+const URI = 'mongodb://admin:tuyxib4rhCdTMZrc@SG-brindis-31778.servers.mongodirector.com:51690,SG-brindis-31779.servers.mongodirector.com:51690,SG-brindis-31780.servers.mongodirector.com:51690/admin?replicaSet=RS-brindis-0&ssl=true'
 
 
 /*const MongoClient = require('mongod').MongoClient();
