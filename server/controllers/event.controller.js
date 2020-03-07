@@ -8,6 +8,13 @@ eventController.getEvents = async (req, res) => {
     res.json(events);
 }
 
+eventController.getEventById = async (req, res) =>{
+    const event = await Event.find({
+        '_id': req.parms.idEvent
+    });
+    res.json({event: event});
+}
+
 eventController.createEvent = async (req, res) => {
     const event = new Event(req.body);
     await event.save();
