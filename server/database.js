@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 
 /*'mongodb://localhost/bar'*/ 
-const URI = 'mongodb+srv://admin:abc.52106@cluster0-5cmep.mongodb.net/admin?retryWrites=true&w=majority';
-
+const URI = 'mongodb+srv://admin:abc.52106@cluster0-ekfve.mongodb.net/test?retryWrites=true&w=majority';
 
 
 
