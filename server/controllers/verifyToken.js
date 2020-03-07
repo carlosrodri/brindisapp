@@ -12,7 +12,6 @@ function verifyToken(req, res, next) {
     } else {
         const decoded = jwt.verify(token, config.secret)
         req.userId = decoded.id
-        console.log(decoded.id + " tokennnnnn");
         next()
     }
 }

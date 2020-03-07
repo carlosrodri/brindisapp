@@ -41,7 +41,7 @@ interestedController.getInterestedByEvent = async (req, res) => {
     }
 }
 
-interestedController.addInterested = verifyToken, async (req, res) => {
+interestedController.addInterested = async (req, res) => {
     const user = await User.findById(req.userId, {
         password: 0
     })

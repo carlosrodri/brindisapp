@@ -41,7 +41,7 @@ favoriteController.getFavoriteByEvent = async (req, res) => {
     }
 }
 
-favoriteController.addFavorite = verifyToken, async (req, res) => {
+favoriteController.addFavorite = async (req, res) => {
     const user = await User.findById(req.userId, {
         password: 0
     })

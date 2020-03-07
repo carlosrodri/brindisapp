@@ -41,7 +41,7 @@ attendController.getAttendByEvent = async (req, res) => {
     }
 }
 
-attendController.addAttend = verifyToken, async (req, res) => {
+attendController.addAttend = async (req, res) => {
     const user = await User.findById(req.userId, {
         password: 0
     })
