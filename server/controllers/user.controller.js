@@ -5,8 +5,9 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
 userController.getUsers = async (req, res) => {
-    const users = await User.find();
-    res.json(users);
+    //const users = await User.find();
+    //res.json(users);
+    res.json({amigo: 'holi'})
 }
 
 /**login  */
