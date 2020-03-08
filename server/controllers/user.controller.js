@@ -69,7 +69,7 @@ async function encryptPassword(password) {
 userController.getUserbyMail = async (req, res) => {
     console.log(req.params.mail);
 
-    const user = await User.find({
+    const user = await User.findOne({
         'mail': req.params.mail
     });
     res.json(user);

@@ -22,14 +22,17 @@ shopController.getShopById = async (req, res) => {
 
 shopController.addQualification = async (req, res) => {
     const shop = await Shop.find({
-        mail: req.params.mail
+        _id: req.body['id']
     })
     shop.update({
-        mail: req.params.mail
+        _id: req.body['id']
     }, {
         $push: {
-            qualificationList: req.params.qulification
+            qualificationList: req.body['qualification']
         }
+    })
+    res.json({
+        message: 'Has calificado este bar'
     })
 }
 
@@ -95,7 +98,5 @@ shopController.editShop = async (req, res) => {
         'status': 'Shop updated'
     });
 }
-
-
 
 module.exports = shopController;
