@@ -42,22 +42,12 @@ attendController.getAttendByEvent = async (req, res) => {
 }
 
 attendController.addAttend = async (req, res) => {
-    const user = await User.findById(req.userId, {
-        password: 0
+    const attend = new Attend(req.body);
+    await attend.save();
+    res.json({
+        status: 'succes',
+        message: 'Asistirás al evento'
     })
-    if (!user) {
-        res.json({
-            status: 'error',
-            'message': ' Debes iniciar sesión para realizar esta accion '
-        })
-    } else {
-        const attend = new Attend(req.body);
-        await attend.save();
-        res.json({
-            status: 'succes',
-            message: 'Asistirás al evento'
-        })
-    }
 }
 
 module.exports = attendController
