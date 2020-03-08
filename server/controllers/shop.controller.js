@@ -9,11 +9,8 @@ shopController.getShops = async (req, res) => {
 }
 
 shopController.getShopById = async (req, res) => {
-    console.log(req.params + '   pasramas')
-    console.log(req.params.id + '   pasramas iud')
-
     const shop = await Shop.find({
-        _id: req.params.id
+        '_id': req.params.id
     })
     res.json({
         shop: shop
@@ -56,8 +53,6 @@ shopController.getShopByMail = async (req, res) => {
             message: 'No hay bares con este mail'
         })
     } else {
-        await console.log(shop[0].name + "  nomkjbrmenrv");
-
         res.json({
             status: 'succes',
             shop: shop[0]
