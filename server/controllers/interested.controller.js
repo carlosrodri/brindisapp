@@ -24,7 +24,7 @@ interestedController.getInterestedByEvent = async (req, res) => {
         shop
     } = req.body
     const interested = await Interested.find({
-        shop
+        event: req.params.event
     })
     if (!interested) {
         await res.json({
