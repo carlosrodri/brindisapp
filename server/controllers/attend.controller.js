@@ -4,9 +4,9 @@ const verifyToken = require('./verifyToken')
 const User = require('../models/user')
 
 attendController.getAttendByUser = async (req, res) => {
- 
+
     const fav = await Attend.find({
-        user: req.body.mail
+        user: req.params.mail
     })
     if (!fav) {
         res.json({
