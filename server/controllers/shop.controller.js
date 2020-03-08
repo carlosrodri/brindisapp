@@ -9,8 +9,8 @@ shopController.getShops = async (req, res) => {
 }
 
 shopController.getShopById = async (res, req) => {
-    log(req.params + '   pasramas')
-    log(req.params.id + '   pasramas iud')
+    console.log(req.params + '   pasramas')
+    console.log(req.params.id + '   pasramas iud')
 
     const shop = await Shop.find({
         _id: req.params.id
