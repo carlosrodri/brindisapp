@@ -55,7 +55,7 @@ interestedController.addInterested = async (req, res) => {
         await interested.save();
         res.json({
             status: 'succes',
-            message: 'Tu evento ha sido creado'
+            message: 'Te interesa este evento'
         })
     }
 }
