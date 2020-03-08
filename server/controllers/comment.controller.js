@@ -24,14 +24,20 @@ commentController.createComment = async (req, res) => {
 commentController.getCommentsByShop = async (req, res) => {
     console.log(req.params.shopId + ' shopppppppppp id');
     console.log(req.params.shop + 'shoooooopppppp');
-    
-    
+
+
     const comments = Comment.find({
         shopId: req.params.shop
     })
-    res.json({
-        comments: comments
-    })
+    if (comments === undefined) {
+        res.json({
+            message: 'No hay comentarios'
+        })
+    } else {
+        res.json({
+            comments: comments
+        })
+    }
 }
 
 commentController.getCommentbyMail = async (req, res) => {
