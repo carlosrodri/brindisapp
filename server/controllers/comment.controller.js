@@ -22,8 +22,12 @@ commentController.createComment = async (req, res) => {
 }
 
 commentController.getCommentsByShop = async (req, res) => {
+    console.log(req.params.shopId + ' shopppppppppp id');
+    console.log(req.params.shop + 'shoooooopppppp');
+    
+    
     const comments = Comment.find({
-        shopId: req.params.id
+        shopId: req.params.shop
     })
     res.json({
         comments: comments
