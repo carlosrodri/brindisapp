@@ -4,11 +4,8 @@ const verifyToken = require('./verifyToken')
 const User = require('../models/user')
 
 interestedController.getInterestedByUser = async (req, res) => {
-    const {
-        user
-    } = req.body
     const fav = await Interested.find({
-        user: user
+        user: req.params.mail
     })
     if (!fav) {
         res.json({
