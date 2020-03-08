@@ -8,6 +8,15 @@ shopController.getShops = async (req, res) => {
     });
 }
 
+shopController.getShopById = async (res, req) => {
+    const shop = await Shop.find({
+        _id: req.params.id
+    })
+    res.json({
+        shop: shop
+    })
+}
+
 shopController.addQualification = async (req, res) => {
     const shop = await Shop.find({
         mail: req.params.mail
@@ -41,8 +50,8 @@ shopController.getShopByMail = async (req, res) => {
             message: 'No hay bares con este mail'
         })
     } else {
-        await console.log(shop[0].name+ "  nomkjbrmenrv");
-        
+        await console.log(shop[0].name + "  nomkjbrmenrv");
+
         res.json({
             status: 'succes',
             shop: shop[0]
