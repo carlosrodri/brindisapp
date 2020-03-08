@@ -42,22 +42,12 @@ interestedController.getInterestedByEvent = async (req, res) => {
 }
 
 interestedController.addInterested = async (req, res) => {
-    const user = await User.findById(req.userId, {
-        password: 0
-    })
-    if (!user) {
-        res.json({
-            status: 'error',
-            'message': ' Debes iniciar sesión para realizar esta accion '
-        })
-    } else {
         const interested = new Interested(req.body);
         await interested.save();
         res.json({
             status: 'succes',
             message: 'Te interesa este evento'
         })
-    }
 }
 
 module.exports = interestedController
