@@ -8,7 +8,7 @@ shopController.getShops = async (req, res) => {
     });
 }
 
-shopController.getShopById = async (res, req) => {
+shopController.getShopById = async (req, res) => {
     console.log(req.params + '   pasramas')
     console.log(req.params.id + '   pasramas iud')
 
