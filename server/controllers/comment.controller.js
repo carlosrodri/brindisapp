@@ -26,8 +26,8 @@ commentController.getCommentsByShop = async (req, res) => {
     const comments = await Comment.find({
         'shopId': req.params.shop
     })
-    console.log(comments + '--shoooooopppppp commmenst');
-    if (!comments) {
+    console.log(comments[0] + '--shoooooopppppp commmenst');
+    if (comments[0] === undefined) {
         res.json({
             message: 'No hay comentarios'
         })
