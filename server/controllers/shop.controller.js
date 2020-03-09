@@ -24,8 +24,7 @@ shopController.addQualification = async (req, res) => {
         $push: {
             qualificationList: req.body.number
         }
-    }
-    );
+    });
     res.json({
         message: 'Has calificado este bar'
     })
@@ -90,6 +89,24 @@ shopController.editShop = async (req, res) => {
     res.json({
         'status': 'Shop updated'
     });
+}
+
+
+shopController.getShopByCity = async (req, res) => {
+    const shop = await Shop.find({
+        'city': req.params.city
+    });
+    if (!shop) {
+        res.json({
+            status: 'error',
+            message: 'No hay bares en tu zona'
+        })
+    } else {
+        res.json({
+            status: 'succes',
+            shop: shop
+        });
+    }
 }
 
 module.exports = shopController;

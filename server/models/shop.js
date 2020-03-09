@@ -12,7 +12,8 @@ const shopSchema = new Schema({
     lon: Number,
     barKind: String,
     qualificationList: [Number],
-    direction: String
+    direction: String,
+    city: String
 });
 
 module.exports = mongoose.model('Shop', shopSchema);
