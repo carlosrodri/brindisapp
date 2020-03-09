@@ -5,6 +5,7 @@ const commentSchema = new Schema({
     date: { type: Date, required: true },
     description: { type: String, required: true },
     userMail: { type: String, required: true },
+    nickname: { type: String, required: true },
     shopId: { type: String, required: true}
 });
 
