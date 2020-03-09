@@ -18,7 +18,8 @@ shopController.getShopById = async (req, res) => {
 }
 
 shopController.addQualification = async (req, res) => {
-    console.log('entra al back');
+    console.log('entra al back---------------------');
+    console.log(req.body['shopId']);
     
     Shop.findOneAndUpdate({
         _id: req.body['shopId']
