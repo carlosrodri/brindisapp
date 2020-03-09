@@ -24,7 +24,7 @@ shopController.addQualification = async (req, res) => {
         $push: {
             qualificationList: req.body.number
         }
-    }, done 
+    }
     );
     res.json({
         message: 'Has calificado este bar'

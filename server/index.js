@@ -39,6 +39,7 @@ app.use('/api/comments', require('./routes/comment.routes'));
 app.use('/api/interesteds', require('./routes/interested.routes'))
 app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
+app.use('/api/sites', require('./routes/sites.routes'))
 
 
 
