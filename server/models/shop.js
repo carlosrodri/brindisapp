@@ -11,7 +11,7 @@ const shopSchema = new Schema({
     lat: Number,
     lon: Number,
     barKind: String,
-    qualificationList: [mongoose.Schema.Types.Decimal128],
+    qualificationList: [Number],
     direction: String
 });
 
