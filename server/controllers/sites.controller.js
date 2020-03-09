@@ -1,12 +1,9 @@
 const sitesController = {}
-
+const fs = require('fs')
 
 sitesController.getCities = async (req, res) =>{
-    readTextFile("server\datas\sites.json", function(text){
-        res.json(JSON.parse(text))
-        console.log(data);
-    });
-
+    var content = fs.readFileSync("server\datas\sites.json");
+   res.json(content)
 }
 
 module.exports = sitesController;

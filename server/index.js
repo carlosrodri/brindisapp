@@ -30,7 +30,6 @@ app.use(multer({
 }).single('image'))
 
 //Routes
-app.get('/', res =>{res.json({message: 'holi'})})
 app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/shops', require('./routes/shop.routes'));
 app.use('/api/states', require('./routes/state.routes'));
