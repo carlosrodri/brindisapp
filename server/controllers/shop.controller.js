@@ -18,16 +18,13 @@ shopController.getShopById = async (req, res) => {
 }
 
 shopController.addQualification = async (req, res) => {
-    const shop = await Shop.find({
-        _id: req.body['shopId']
-    })
-    shop.update({
-        _id: req.body['id']
+    Shop.findOneAndUpdate({
+        _id: req['shopId']
     }, {
         $push: {
-            qualificationList: req.body['number']
+            qualificationList: req['number']
         }
-    })
+    });
     res.json({
         message: 'Has calificado este bar'
     })
