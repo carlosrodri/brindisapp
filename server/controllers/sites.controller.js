@@ -3,7 +3,8 @@ const fs = require('fs')
 
 sitesController.getCities = async (req, res) =>{
     var content = fs.readFileSync("server/datas/sites.json");
-   res.json(content)
+    var jsonContent = JSON.parse(content)
+   res.json(jsonContent)
 }
 
 module.exports = sitesController;
