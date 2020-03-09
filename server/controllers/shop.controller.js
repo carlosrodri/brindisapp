@@ -19,13 +19,14 @@ shopController.getShopById = async (req, res) => {
 
 shopController.addQualification = async (req, res) => {
     console.log('entra al back---------------------');
-    console.log(req.body['shopId']);
+    console.log(req.body.shopId);
+    console.log(req.body.number);
     
     Shop.findOneAndUpdate({
-        _id: req.body['shopId']
+        _id: req.body.shop
     }, {
         $push: {
-            qualificationList: req.body['number']
+            qualificationList: req.body.number
         }
     });
     res.json({
