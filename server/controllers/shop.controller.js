@@ -19,13 +19,13 @@ shopController.getShopById = async (req, res) => {
 
 shopController.addQualification = async (req, res) => {
     const shop = await Shop.find({
-        _id: req.body['id']
+        _id: req.body['shopId']
     })
     shop.update({
         _id: req.body['id']
     }, {
         $push: {
-            qualificationList: req.body['qualification']
+            qualificationList: req.body['number']
         }
     })
     res.json({

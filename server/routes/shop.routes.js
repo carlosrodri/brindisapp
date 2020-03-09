@@ -10,6 +10,6 @@ router.get('/name/:name', shop.getShopByName);
 router.get('/id/:id', shop.getShopById);
 router.delete('/:id', shop.deleteShop);
 router.put('/:id', shop.editShop);
-router.post('/qualification/:qualification', shop.editShop);
+router.post('/qualification', shop.addQualification);
 
 module.exports = router;
