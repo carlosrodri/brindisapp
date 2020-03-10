@@ -11,6 +11,8 @@ userController.getUsers = async (req, res) => {
 
 /**login  */
 userController.signIn = async (req, res) => {
+
+    res.setHeader('Access-Control-Allow-Origin', '*')
     const {
         mail,
         password
