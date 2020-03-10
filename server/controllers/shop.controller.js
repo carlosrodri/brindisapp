@@ -104,7 +104,7 @@ shopController.getShopByCity = async (req, res) => {
     } else {
         res.json({
             status: 'succes',
-            shop: shop
+            shops: shop
         });
     }
 }

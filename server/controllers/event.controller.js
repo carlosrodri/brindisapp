@@ -8,11 +8,13 @@ eventController.getEvents = async (req, res) => {
     res.json(events);
 }
 
-eventController.getEventById = async (req, res) =>{
+eventController.getEventById = async (req, res) => {
     const event = await Event.find({
         '_id': req.params.id
     });
-    res.json({event: event});
+    res.json({
+        event: event
+    });
 }
 
 eventController.createEvent = async (req, res) => {
@@ -53,6 +55,30 @@ eventController.getEventsByShop = async (req, res) => {
         'shop': req.parms.shop
     });
     res.json(events);
+}
+
+eventController.getEventsByCity = async (req, res) => {
+    const events = await Event.find({
+        'city': req.parms.city
+    });
+    if (!events) {
+        res.json({
+            message: 'No hay eventos próximos en esta ciudad'
+        })
+    } else {
+        const eventByCity
+        events.forEach(event => {
+            if (event.date > new Date()) {
+                eventByCity.push(event)
+            } else {
+
+            }
+        });
+
+        res.json({
+            events: eventByCity
+        });
+    }
 }
 
 module.exports = eventController;
