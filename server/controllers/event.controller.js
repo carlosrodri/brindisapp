@@ -66,15 +66,6 @@ eventController.getEventsByCity = async (req, res) => {
             message: 'No hay eventos próximos en esta ciudad'
         })
     } else {
-        const eventByCity = []
-        events.forEach(event => {
-            if (event.date > new Date()) {
-                eventByCity.push(event)
-            } else {
-
-            }
-        });
-
         res.json({
             events: eventByCity
         });
