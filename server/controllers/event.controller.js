@@ -62,6 +62,17 @@ eventController.getEventsByCity = async (req, res) => {
     }, {
         city: req.params.city
     })
+
+    if (events === undefined || events === null || !events) {
+        res.json({
+            staus: 'error',
+            message: 'No hay eventos el día de hoy en la ciudad seleccionada'
+        })
+    } else {
+        res.json({
+            events: events
+        })
+    }
 }
 
 module.exports = eventController;
