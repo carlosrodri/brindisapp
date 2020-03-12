@@ -67,7 +67,7 @@ eventController.getEventsByCity = async (req, res) => {
             city: req.params.city
         }, {
             date: {
-                $gte: new Date("<YYYY-mm-ddTHH:MM:ss>").toISOString()
+                $gte: new Date().toISOString()
             }
         }]
     }, (err, actividad) => {
