@@ -63,8 +63,9 @@ eventController.getEventsByCity = async (req, res) => {
 
 
     Event.find({
-       city: req.params.city
-        
+        $and: [{
+            city: req.params.city
+        }]
     }, (err, actividad) => {
         if (err) {
             console.log(err.message);
