@@ -59,13 +59,18 @@ eventController.getEventsByShop = async (req, res) => {
 
 eventController.getEventsByCity = async (req, res) => {
     console.log(req.params.city + '   city');
-    console.log(new Date() + " fevha actual");
+    console.log(new Date() + "");
 
 
-    const events = Event.find({
-        $and: [{
+    Event.find({
+        /*$and: [{
             ciudad: req.params.city
-        }]
+        }, {
+            date: {
+                $gte: new Date()
+            }
+        }]*/
+        city: req.params.city
     }, (err, actividad) => {
         if (err) {
             console.log(err.message);
@@ -74,12 +79,12 @@ eventController.getEventsByCity = async (req, res) => {
             })
         }
         if (!actividad) { // si no se consiguen documentos
-            return res.status(400).json({
-                message: 'No se ha encontrado actividad en la fecha dada.'
-            });
+            res.json({
+                message: 'No hay eventos próximos en esta ciudad'
+            })
         }
         res.json({
-            events: events
+            events: actividad
         });
     });
 }
