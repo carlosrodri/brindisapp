@@ -58,8 +58,7 @@ eventController.getEventsByShop = async (req, res) => {
 eventController.getEventsByCity = async (req, res) => {
     console.log(req.params.city + " ciudad que está acá");
     const events = await Event.find( {
-     
-        date: new Date()
+        city: req.params.city
     })
 
     if (events === undefined || events === null || !events) {
