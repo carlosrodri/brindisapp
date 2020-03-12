@@ -1,7 +1,5 @@
 const Event = require('../models/event');
 const eventController = {};
-const User = require('../models/user')
-
 
 eventController.getEvents = async (req, res) => {
     const events = await Event.find();
@@ -58,28 +56,12 @@ eventController.getEventsByShop = async (req, res) => {
 }
 
 eventController.getEventsByCity = async (req, res) => {
-    console.log(req.params.city + '   city');
-    console.log(new Date().toISOString() + "");
 
-
-    Event.find({
-      date: new Date(Date.now())
-    }, (err, actividad) => {
-        if (err) {
-            console.log(err.message);
-            res.json({
-                message: 'No hay eventos próximos en esta ciudad'
-            })
-        }
-        if (!actividad) { // si no se consiguen documentos
-            res.json({
-                message: 'No hay eventos próximos en esta ciudad'
-            })
-        }
-        res.json({
-            events: actividad
-        });
-    });
+    const events = Event.findById({
+        date: new Date()
+    }, {
+        city: req.params.city
+    })
 }
 
 module.exports = eventController;
