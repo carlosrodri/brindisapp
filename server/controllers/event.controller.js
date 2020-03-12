@@ -59,19 +59,17 @@ eventController.getEventsByShop = async (req, res) => {
 
 eventController.getEventsByCity = async (req, res) => {
     console.log(req.params.city + '   city');
-    console.log(new Date("YYYY-mm-ddTHH:MM:ss") + "");
+    console.log(new Date() + "");
 
 
     Event.find({
-        date: new Date()
-        /*
         $and: [{
             city: req.params.city
         }, {
             date: {
-                $gte: new Date()
+                $gte: new Date("<YYYY-mm-ddTHH:MM:ss>")
             }
-        }]*/
+        }]
     }, (err, actividad) => {
         if (err) {
             console.log(err.message);
