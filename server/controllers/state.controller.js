@@ -11,17 +11,24 @@ stateController.createState = async (req, res) => {
     await state.save();
     console.log(state);
     res.json({
-        'status': 'estado guardado'
+        'message': 'estado guardado'
     });
 }
 
-stateController.getStatebyMail = async (req, res) => {
-    console.log(req.params.mail);
+stateController.getStatusByShop = async (req, res) => {
     
-    const state = await State.find( {'mail': req.params.mail} );
-    res.json(state);
-    console.log(state);
-    
+    const status = await State.find({
+        'shopId': req.params.shop
+    })
+    if (status[0] === undefined) {
+        res.json({
+            message: 'No hay estados'
+        })
+    } else {
+        res.json({
+            status: status
+        })
+    }
 }
 
 stateController.deleteState = async (req, res) => {
