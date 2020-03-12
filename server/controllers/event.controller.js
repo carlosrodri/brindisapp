@@ -83,7 +83,7 @@ eventController.getEventsByCity = async (req, res) => {
             });
         }
         res.json({
-            events: eventByCity
+            events: events
         });
     });
 }
