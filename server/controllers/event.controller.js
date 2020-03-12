@@ -58,18 +58,34 @@ eventController.getEventsByShop = async (req, res) => {
 }
 
 eventController.getEventsByCity = async (req, res) => {
-    const events = await Event.find({
-        'city': req.parms.city
-    });
-    if (!events) {
-        res.json({
-            message: 'No hay eventos próximos en esta ciudad'
-        })
-    } else {
+    console.log(req.params.city + '   city');
+    console.log(new Date() + " fevha actual");
+
+
+    const events = Event.find({
+        $and: [{
+            ciudad: req.params.city
+        }, {
+            date: {
+                $gte: new Date()
+            }
+        }]
+    }, (err, actividad) => {
+        if (err) {
+            console.log(err.message);
+            res.json({
+                message: 'No hay eventos próximos en esta ciudad'
+            })
+        }
+        if (!actividad) { // si no se consiguen documentos
+            return res.status(400).json({
+                message: 'No se ha encontrado actividad en la fecha dada.'
+            });
+        }
         res.json({
             events: eventByCity
         });
-    }
+    });
 }
 
 module.exports = eventController;
