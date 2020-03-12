@@ -63,11 +63,8 @@ eventController.getEventsByCity = async (req, res) => {
 
 
     Event.find({
-        $and: [{
-            date: {
-                $gte: new Date().toISOString()
-            }
-        }]
+        date: new Date().toISOString()
+        
     }, (err, actividad) => {
         if (err) {
             console.log(err.message);
