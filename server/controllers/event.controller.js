@@ -64,8 +64,6 @@ eventController.getEventsByCity = async (req, res) => {
 
     Event.find({
         $and: [{
-            city: req.params.city
-        }, {
             date: {
                 $gte: new Date().toISOString()
             }
