@@ -63,7 +63,7 @@ shopController.getShopByName = async (req, res) => {
     });
     if (shop[0] === undefined) {
         res.json({
-            staus: 'error',
+            status: 'error',
             message: 'No hay bares con ese nombre'
         })
     } else {
