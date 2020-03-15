@@ -59,11 +59,18 @@ shopController.getShopByMail = async (req, res) => {
 
 shopController.getShopByName = async (req, res) => {
     const shop = await Shop.find({
-        'name': /.*req.params.name*/i
+        'name': req.params.name
     });
-    res.json({
-        shops: shop
-    });
+    if (shop.length() > 0) {
+        res.json({
+            shops: shop
+        });
+    } else {
+        res.json({
+            staus: 'error',
+            message: 'No hay bares con ese nombre'
+        })
+    }
 }
 
 shopController.deleteShop = async (req, res) => {
