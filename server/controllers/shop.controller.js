@@ -59,9 +59,11 @@ shopController.getShopByMail = async (req, res) => {
 
 shopController.getShopByName = async (req, res) => {
     const shop = await Shop.find({
-        'name': req.params.name
+        'name': /.*req.params.name*/i
     });
-    res.json(shop);
+    res.json({
+        shops: shop
+    });
 }
 
 shopController.deleteShop = async (req, res) => {
