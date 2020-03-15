@@ -61,15 +61,15 @@ shopController.getShopByName = async (req, res) => {
     const shop = await Shop.find({
         'name': req.params.name
     });
-    if (shop.length() > 0) {
-        res.json({
-            shops: shop
-        });
-    } else {
+    if (shop[0] === undefined) {
         res.json({
             staus: 'error',
             message: 'No hay bares con ese nombre'
         })
+    } else {
+        res.json({
+            shops: shop
+        });
     }
 }
 
