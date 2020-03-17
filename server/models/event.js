@@ -8,7 +8,8 @@ const eventSchema = new Schema({
     cover: String,
     shop: {type: String, required: true},
     initHour: {type: String},
-    city: String
+    city: String,
+    imageUrl: String
 });
 
 module.exports = mongoose.model('Event', eventSchema);
