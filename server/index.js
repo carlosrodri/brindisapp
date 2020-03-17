@@ -2,9 +2,23 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const cors = require('cors')
-const multipart = require('connect-multiparty')
+const multer = require('multer')
 const bodyParser = require('body-parser')
 
+let UPLOAD_PATH = 'public/images/'
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, UPLOAD_PATH)
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+
+let upload = multer({
+    storage: storage
+})
 
 app.use(cors())
 
@@ -16,9 +30,6 @@ const {
 app.set('port', process.env.PORT || 3000);
 
 //Middlewares
-const multiPartMiddleware = multipart({
-    uploadDir: './public/images'
-})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
@@ -36,12 +47,11 @@ app.use('/api/interesteds', require('./routes/interested.routes'))
 app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
-app.post('/api/picture', multiPartMiddleware, (req, res) =>{
+app.post('/api/picture', upload.single('image'), (req, res, next) => {
     res.json({
-        message: 'La foto se ha subido con éxito'
+        message: 'guardad con exito la imagen: ' + req.file.filename
     })
 })
-
 
 //Starting server
 app.listen(app.get('port'), () => {
