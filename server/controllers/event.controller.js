@@ -50,7 +50,7 @@ eventController.updateEvent = async (req, res) => {
 
 eventController.getEventsByShop = async (req, res) => {
     const events = await Event.find({
-        'shop': req.parms.shop
+        'shop': req.params.shop
     });
     if (events[0] === undefined) {
         res.json({
