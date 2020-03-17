@@ -2,18 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const cors = require('cors')
-const multer = require('multer')
-const path = require('path')
+const multipart = require('connect-multiparty')
 const bodyParser = require('body-parser')
 
-const storage = multer.diskStorage({
-    destination: path.join(__dirname, 'public/images'),
-    filename: (req, file, cb) =>{
-        cb(null, file.originalname)
-    }
-})
-
-const uploader = multer({storage})
 
 app.use(cors())
 
@@ -25,18 +16,15 @@ const {
 app.set('port', process.env.PORT || 3000);
 
 //Middlewares
+const multiPartMiddleware = multipart({
+    uploadDir: './public/images'
+})
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 app.use(morgan('dev'));
 app.use(express.json());
-app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,OPTIONS,DELETE,PATCH');
-    res.setHeader('Access-Control-Allow-Headers','Content-Type, Accept');
-    next();
-});
-app.use(express.static(path.join(__dirname,'/public')));//Directorio para archivos staticos
-app.use('/uploads',express.static(path.join(__dirname,'/uploads')));//Directorio de imagenes
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
@@ -48,11 +36,9 @@ app.use('/api/interesteds', require('./routes/interested.routes'))
 app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
-app.post('/api/picture',uploader.single('file'),(req,res)=>{
-    const {file,body}=req;//req.file existe gracias al middleware de multer
-    res.status(200).json({
-        body:body,
-        file:file
+app.post('/api/picture', multiPartMiddleware, (req, res) =>{
+    res.json({
+        message: 'La foto se ha subido con éxito'
     })
 })
 
