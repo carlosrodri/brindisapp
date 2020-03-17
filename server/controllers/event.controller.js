@@ -52,12 +52,21 @@ eventController.getEventsByShop = async (req, res) => {
     const events = await Event.find({
         'shop': req.parms.shop
     });
-    res.json(events);
+    if (events[0] === undefined) {
+        res.json({
+            status: 'error',
+            message: 'No has creado eventos'
+        })
+    } else {
+        res.json({
+            events: events
+        });
+    }
 }
 
 eventController.getEventsByCity = async (req, res) => {
     console.log(req.params.city + " ciudad que está acá");
-    const events = await Event.find( {
+    const events = await Event.find({
         city: req.params.city
     })
 
