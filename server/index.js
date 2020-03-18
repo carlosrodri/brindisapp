@@ -48,6 +48,8 @@ app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.post('/api/picture', upload.single('image'), (req, res, next) => {
+    console.log(req.file + ' archivooooo');
+    
     res.json({
         message: req.file.filename
     })
