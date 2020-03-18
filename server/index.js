@@ -3,22 +3,9 @@ const morgan = require('morgan');
 const app = express();
 const cors = require('cors')
 const multer = require('multer')
+const path = require('path')
 const bodyParser = require('body-parser')
 
-let UPLOAD_PATH = 'public/images/'
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, UPLOAD_PATH)
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-})
-
-let upload = multer({
-    storage: storage
-})
 
 app.use(cors())
 
@@ -36,6 +23,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(multer({dest: path.join(__dirname, 'public/image')}).single('image'))
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
@@ -47,7 +35,7 @@ app.use('/api/interesteds', require('./routes/interested.routes'))
 app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
-app.post('/api/picture', upload.single('image'), (req, res, next) => {
+app.post('/api/picture', (req, res) => {
     console.log(req.file + ' archivooooo');
     
     res.json({
