@@ -25,9 +25,15 @@ app.use(bodyParser.urlencoded({
 app.use(morgan('dev'));
 app.use(express.json());
 const storage = multer.diskStorage({
-    destination: path.join(__dirname,'public/images')
+    destination: path.join(__dirname, 'public/images'),
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
 })
-app.use(multer({storage: storage}).single('image'))
+app.use(multer({
+    storage: storage
+}).single('image'))
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
@@ -43,7 +49,7 @@ app.post('/api/picture', (req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.body + '  boody');
     console.log(req.body.file + '  fileeeeeeeeeeeeeeeeeeeeeeeeeee');
-    
+
     res.json({
         message: req.file
     })
