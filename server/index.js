@@ -47,8 +47,7 @@ app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.post('/api/picture', (req, res) => {
     console.log(req.file.path + ' archivooooo');
-    console.log(req.body + '  boody');
-    console.log(req.body.file + '  fileeeeeeeeeeeeeeeeeeeeeeeeeee');
+    console.log(req.file + '  boody');
 
     res.json({
         message: req.file
