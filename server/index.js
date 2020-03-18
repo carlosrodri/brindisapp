@@ -5,6 +5,7 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
+const uuid = require('uuid/v4')
 
 
 app.use(cors())
@@ -23,7 +24,13 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(multer({dest: path.join(__dirname, 'public/image')}).single('image'))
+const storage = multer.diskStorage({
+    destination: path.join(__dirname,'public/images'),
+    filename: (req, file, cb, filename) => {
+        cb(null, uuid()+ path.extname(file.originalname))
+    }
+})
+app.use(multer({storage: storage}).single('image'))
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
@@ -36,10 +43,10 @@ app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.post('/api/picture', (req, res) => {
-    console.log(req.files + ' archivooooo');
     console.log(req.file + ' archivooooo');
-    console.log(req.header + ' archivooooo');
-    console.log(req.params.desc+ ' description');
+    console.log(req.body + '  boody');
+    console.log(req.body.file + '  fileeeeeeeeeeeeeeeeeeeeeeeeeee');
+    
     res.json({
         message: req.file.filename
     })
