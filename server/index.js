@@ -25,13 +25,7 @@ app.use(bodyParser.urlencoded({
 app.use(morgan('dev'));
 app.use(express.json());
 const storage = multer.diskStorage({
-    destination: path.join(__dirname,'public/images'),
-    filename: (req, file, cb, filename) => {
-        console.log(file + ' fileeeee');
-        console.log(file.originalname + ' fileeeee orginalname');
-        
-        cb(null, uuid()+ path.extname(file.originalname))
-    }
+    destination: path.join(__dirname,'public/images')
 })
 app.use(multer({storage: storage}).single('image'))
 
