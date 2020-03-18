@@ -5,7 +5,7 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
-const uuid = require('uuid/v4')
+const uuid = require('uuid/v5')
 
 
 app.use(cors())
@@ -43,12 +43,12 @@ app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.post('/api/picture', (req, res) => {
-    console.log(req.file + ' archivooooo');
+    console.log(req.file.path + ' archivooooo');
     console.log(req.body + '  boody');
     console.log(req.body.file + '  fileeeeeeeeeeeeeeeeeeeeeeeeeee');
     
     res.json({
-        message: req.file.filename
+        message: req.file
     })
 })
 
