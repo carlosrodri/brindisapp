@@ -49,7 +49,7 @@ app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.post('/api/picture', upload.single('image'), (req, res, next) => {
     res.json({
-        message: 'guardad con exito la imagen: ' + req.file.filename
+        message: req.file.filename
     })
 })
 
