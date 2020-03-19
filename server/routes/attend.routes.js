@@ -3,7 +3,7 @@ const router = express.Router();
 
 const attend = require('../controllers/attend.controller');
 
-router.get('/events', attend.getAttendByEvent) ;
+router.get('/event/:event', attend.getAttendByEvent) ;
 router.get('/users/:mail', attend.getAttendByUser) ;
 router.post('/', attend.addAttend);
 

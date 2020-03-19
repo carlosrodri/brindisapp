@@ -3,6 +3,13 @@ const interestedController = {}
 const verifyToken = require('./verifyToken')
 const User = require('../models/user')
 
+interestedController.getInteresteds = async (req, res) =>{
+    const interested = await Interested.find()
+    res.json({
+        interested: interested
+    })
+}
+
 interestedController.getInterestedByUser = async (req, res) => {
     const fav = await Interested.find({
         user: req.params.mail
@@ -20,20 +27,17 @@ interestedController.getInterestedByUser = async (req, res) => {
 }
 
 interestedController.getInterestedByEvent = async (req, res) => {
-    const {
-        shop
-    } = req.body
     const interested = await Interested.find({
         event: req.params.event
     })
-    if (!interested) {
+    if (interested[0] === undefined) {
         await res.json({
             status: 'error',
             message: 'No hay interesados en tu evento'
         })
     } else {
         await res.status(200).json({
-            interested
+           interested: interested
         })
     }
 }

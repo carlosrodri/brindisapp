@@ -22,16 +22,16 @@ attendController.getAttendByUser = async (req, res) => {
 
 attendController.getAttendByEvent = async (req, res) => {
     const attend = await Attend.find({
-        event: req.params.eventId
+        event: req.params.event
     })
-    if (!attend) {
+    if (attend[0] === undefined) {
         await res.json({
             status: 'error',
             message: 'No hay asistentes en tu evento'
         })
     } else {
         await res.status(200).json({
-            attend
+           attends: attend
         })
     }
 }
