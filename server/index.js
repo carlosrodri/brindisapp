@@ -57,7 +57,7 @@ app.get('/api/picture/:img', async (req, res) => {
     console.log(req.params.img + ' archivooooo');
     console.log(await cloudinary.v2.uploader.upload(req.params.img) + '        url');
     
-    const result = await cloudinary.v2.uploader.upload(req.params.imge)
+    const result = await cloudinary.v2.uploader.upload(req.params.img)
     console.log(result.url + ' url jajajajjaa');
 
     
