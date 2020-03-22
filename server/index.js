@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const cors = require('cors')
-const multer = require('multer')
+//const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(morgan('dev'));
 app.use(express.json());
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/images'),
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 })
 app.use(multer({
     storage
-}).single('image'))
+}).single('image'))*/
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
