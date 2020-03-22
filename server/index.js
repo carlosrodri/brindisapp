@@ -7,9 +7,9 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+    cloud_name: 'brindis',
+    api_key: '191576662983511',
+    api_secret: 'Qeun7RcD5siRko0O1WObghNkmEY'
 })
 
 app.use(cors())
