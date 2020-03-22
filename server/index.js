@@ -51,7 +51,7 @@ app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
-app.post('/api/picture', async(req, res) => {
+app.post('/api/picture', (req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.file + '  boody');
     const result = await cloudinary.v2.uploader.upload(req.file.path)
