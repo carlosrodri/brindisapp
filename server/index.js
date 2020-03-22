@@ -44,7 +44,9 @@ app.use('/api/comments', require('./routes/comment.routes'));
 app.use('/api/interesteds', require('./routes/interested.routes'))
 app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
+app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
+app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/picture', (req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.file + '  boody');
