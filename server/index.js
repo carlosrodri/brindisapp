@@ -54,7 +54,7 @@ app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/picture', (req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.file + '  boody');
-    const result = await cloudinary.v2.uploader.upload(req.file.path)
+    const result = cloudinary.v2.uploader.upload(req.file.path)
     console.log(result.url + ' url jajajajjaa');
     
     res.json({
