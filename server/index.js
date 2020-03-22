@@ -55,6 +55,8 @@ app.post('/api/picture', async(req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.file + '  boody');
     const result = await cloudinary.v2.uploader.upload(req.file.path)
+    console.log(result.url + ' url jajajajjaa');
+    
     res.json({
         message: result.url
     })
