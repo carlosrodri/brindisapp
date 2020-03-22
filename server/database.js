@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+} else {
+  
+}
 
 
 const UR = 'mongodb://localhost/bar'
-const URI = 'mongodb+srv://admin:abc.52106@cluster0-5cmep.mongodb.net/test?retryWrites=true&w=majority';
 const URIM = 'mongodb://admin:tuyxib4rhCdTMZrc@SG-brindis-31778.servers.mongodirector.com:51690,SG-brindis-31779.servers.mongodirector.com:51690,SG-brindis-31780.servers.mongodirector.com:51690/admin?replicaSet=RS-brindis-0&ssl=true'
 
 
@@ -16,7 +20,8 @@ client.connect(err => {
 });*/
 
 
-mongoose.connect(URI, {useNewUrlParser: true, useUnifiedTopology: true})
+
+mongoose.connect(process.env.MONGO_DB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((db) => {
     console.log('DB is connected');
 }).catch((err) => {

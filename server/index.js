@@ -5,8 +5,12 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
-const uuid = require('uuid/v5')
-
+const cloudinary = require('cloudinary')
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
 
 app.use(cors())
 
@@ -28,11 +32,11 @@ const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/images'),
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix)
+        cb(null, new Date().getTime() + path.extname(file.originalname))
     }
 })
 app.use(multer({
-    storage: storage
+    storage
 }).single('image'))
 
 //Routes
@@ -47,14 +51,14 @@ app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
-app.post('/api/picture', (req, res) => {
+app.post('/api/picture', async(req, res) => {
     console.log(req.file.path + ' archivooooo');
     console.log(req.file + '  boody');
-
+    const result = await cloudinary.v2.uploader.upload(req.file.path)
     res.json({
-        message: req.file
+        message: result.url
     })
-})
+})                                         
 
 //Starting server
 app.listen(app.get('port'), () => {
