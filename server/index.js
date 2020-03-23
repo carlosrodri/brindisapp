@@ -53,12 +53,22 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.get('/api/picture/:img', async (req, res) => {
     console.log(req.params.img + ' archivooooo');
-    const result = await cloudinary.v2.uploader.upload(req.params.img)
-    console.log(result.url + ' url jajajajjaa');
-    res.json({
-        img: result.url
-    })
-})                                         
+
+    cloudinary.v2.uploader.upload(req.params.img,
+        function (error, result) {
+            console.log(result, error);
+            if (result) {
+                res.json({
+                    img: result.url
+                })
+            } else {
+                
+            }
+        });
+
+   /* const result = await cloudinary.v2.uploader.upload(req.params.img)
+    console.log(result.url + ' url jajajajjaa');*/
+})
 
 //Starting server
 app.listen(app.get('port'), () => {
