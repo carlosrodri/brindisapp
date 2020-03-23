@@ -52,17 +52,11 @@ app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.get('/api/picture/:img', async (req, res) => {
-    console.log(req.body);
-    
     console.log(req.params.img + ' archivooooo');
-    console.log(await cloudinary.v2.uploader.upload(req.params.img) + '        url');
-    
     const result = await cloudinary.v2.uploader.upload(req.params.img)
     console.log(result.url + ' url jajajajjaa');
-
-    
     res.json({
-        message: result.url
+        img: result.url
     })
 })                                         
 
