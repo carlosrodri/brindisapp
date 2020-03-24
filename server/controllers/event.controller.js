@@ -33,6 +33,9 @@ eventController.deleteEvent = async (req, res) => {
 }
 
 eventController.updateEvent = async (req, res) => {
+    console.log(req.params.id);
+    console.log(req.body.imageUrl);
+
     const eventUpdated = new Event({
         date: req.body.date,
         description: req.body.description,
