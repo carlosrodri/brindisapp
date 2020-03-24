@@ -43,14 +43,11 @@ eventController.updateEvent = async (req, res) => {
         city: req.body.city,
         imageUrl: req.body.imageUrl
     });
-    await Event.findByIdAndUpdate(req.params.id, {
-        $set: eventUpdated
-    }, {
-        new: true
-    });
-    res.json({
-        'status': 'updated'
-    });
+    await Event.findByIdAndUpdate(id, eventUpdated, (err => {
+        res.json({
+            'status': err
+        });
+    }))
 }
 
 eventController.getEventsByShop = async (req, res) => {
