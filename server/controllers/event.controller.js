@@ -20,7 +20,8 @@ eventController.createEvent = async (req, res) => {
     await event.save();
     res.json({
         status: 'succes',
-        message: ' un evento nuevo ha sido creado '
+        message: ' un evento nuevo ha sido creado ',
+        id: event._id
     })
 }
 
@@ -36,9 +37,13 @@ eventController.updateEvent = async (req, res) => {
         date: req.body.date,
         description: req.body.description,
         name: req.body.name,
+        cover: req.body.cover,
+        shop: req.body.shop,
         initHour: req.body.initHour,
+        city: req.body.city,
+        imageUrl: req.body.imageUrl
     });
-    await Event.findByIdAndUpdate(req.parms.id, {
+    await Event.findByIdAndUpdate(req.params.id, {
         $set: eventUpdated
     }, {
         new: true
