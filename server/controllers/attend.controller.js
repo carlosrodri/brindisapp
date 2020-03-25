@@ -27,7 +27,7 @@ attendController.getAttendByEvent = async (req, res) => {
     if (attend[0] === undefined) {
         await res.json({
             status: 'error',
-            message: 'No hay asistentes en tu evento'
+            message: 'No hay asistentes al evento'
         })
     } else {
         await res.status(200).json({

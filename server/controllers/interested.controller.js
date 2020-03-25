@@ -33,7 +33,7 @@ interestedController.getInterestedByEvent = async (req, res) => {
     if (interested[0] === undefined) {
         await res.json({
             status: 'error',
-            message: 'No hay interesados en tu evento'
+            message: 'No hay interesados en el evento'
         })
     } else {
         await res.status(200).json({

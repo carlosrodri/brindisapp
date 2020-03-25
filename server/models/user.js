@@ -8,7 +8,8 @@ const userSchema = new Schema({
     mail: String,
     name: String,
     nickname: String,
-    password: String
+    password: String,
+    imageUrl: String
 });
 
 userSchema.method.encryptPassword = async (password) => {
