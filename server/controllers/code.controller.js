@@ -21,7 +21,7 @@ codesController.getCode = async (req, res) => {
 
 codesController.getCodes = async (req, res) => {
     const codes = await Code.find()
-    if (codes[0] === undefined) {
+    if (codes === undefined) {
         res.json({
             status: 'error',
             message: 'No hay códigos'
@@ -33,7 +33,7 @@ codesController.getCodes = async (req, res) => {
     }
 }
 
-/*codesController.createCode = async (req, res) => {
+codesController.createCode = async (req, res) => {
     const code = new Code(req.body);
     await code.save();
     res.json({
@@ -41,7 +41,7 @@ codesController.getCodes = async (req, res) => {
         message: 'Código creado con éxito',
         code: code
     });
-}*/
+}
 
 codesController.deleteCode = async (req, res) => {
     await Code.findByIdAndDelete(req.params.id)
