@@ -31,7 +31,7 @@ attendController.getAttendByEvent = async (req, res) => {
         })
     } else {
         await res.status(200).json({
-           attends: attend
+            attends: attend
         })
     }
 }
@@ -43,6 +43,21 @@ attendController.addAttend = async (req, res) => {
         status: 'succes',
         message: 'Asistirás al evento'
     })
+}
+
+attendController.getAtends = async (req, res) => {
+    const attends = await Attend.find()
+    if (!attends) {
+        res.json({
+            status: 'error',
+            message: 'No hay asistentes a algun evento'
+        })
+    } else {
+        res.json({
+            status: 'succes',
+            attends: attends
+        })
+    }
 }
 
 module.exports = attendController
