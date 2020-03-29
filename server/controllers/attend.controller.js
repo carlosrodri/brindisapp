@@ -45,7 +45,7 @@ attendController.addAttend = async (req, res) => {
     })
 }
 
-attendController.getAtends = async (req, res) => {
+attendController.getAttends = async (req, res) => {
     const attends = await Attend.find()
     if (!attends) {
         res.json({
