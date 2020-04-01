@@ -7,7 +7,8 @@ const stateSchema = new Schema({
     userMail: { type: String, required: true },
     nickname: { type: String, required: true },
     shopId: { type: String, required: true},
-    ininthour: Date
+    ininthour: Date,
+    statusImg: String
 });
 
 module.exports = mongoose.model('State', stateSchema);
