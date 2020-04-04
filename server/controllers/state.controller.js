@@ -35,7 +35,7 @@ stateController.deleteState = async (req, res) => {
 
     const status = await State.find()
     status.forEach(element => {
-        await State.findByIdAndDelete(element._id)
+        State.findByIdAndDelete(element._id)
     });
     // await State.findByIdAndDelete(req.params.id);
     res.json({
