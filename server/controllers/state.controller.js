@@ -16,7 +16,7 @@ stateController.createState = async (req, res) => {
 }
 
 stateController.getStatusByShop = async (req, res) => {
-
+    
     const status = await State.find({
         'shopId': req.params.shop
     })
@@ -32,15 +32,10 @@ stateController.getStatusByShop = async (req, res) => {
 }
 
 stateController.deleteState = async (req, res) => {
-
-    const status = await State.find()
-    status.forEach(element => {
-        State.findByIdAndDelete(element._id)
-    });
-    // await State.findByIdAndDelete(req.params.id);
-    res.json({
-        status: 'State deleted'
-    });
+    console.log(req.params.id);
+    
+    await State.findByIdAndDelete(req.params.id);
+    res.json({status: 'State deleted'});
 }
 
 stateController.editState = async (req, res) => {
@@ -49,14 +44,8 @@ stateController.editState = async (req, res) => {
         description: req.body.description,
         user: req.body.user
     }
-    await State.findByIdAndUpdate(req.params.id, {
-        $set: stateUpdated
-    }, {
-        new: true
-    });
-    res.json({
-        status: 'States Updated'
-    });
+    await State.findByIdAndUpdate(req.params.id, { $set: stateUpdated }, { new: true });
+    res.json({ status: 'States Updated' });
 }
 
 module.exports = stateController;
