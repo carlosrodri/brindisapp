@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const State = require('./models/state');
 const app = express();
 const cors = require('cors')
 const multer = require('multer')
@@ -69,6 +70,18 @@ app.get('/api/picture/:img', async (req, res) => {
    /* const result = await cloudinary.v2.uploader.upload(req.params.img)
     console.log(result.url + ' url jajajajjaa');*/
 })
+
+//TO-DO llamar al metodo de routes para eliminar todos los estados
+ /*setInterval(async function clearStatus(){
+        const status = await State.find();
+        status.forEach(element => {
+            console.log(element._id + ' jajajajjaj');
+            
+            //State.findByIdAndDelete(element._id)
+        });
+}, 1000)*/
+
+
 
 //Starting server
 app.listen(app.get('port'), () => {
