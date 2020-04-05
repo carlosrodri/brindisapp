@@ -33,7 +33,7 @@ stateController.addDontLike = async (req, res) => {
         _id: req.body.status
     }, {
         $push: {
-            dontLikeList: 1-
+            dontLikeList: 1
         }
     });
     res.json({
