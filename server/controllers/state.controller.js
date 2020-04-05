@@ -16,11 +16,11 @@ stateController.createState = async (req, res) => {
 }
 
 stateController.addLike = async (req, res) => {
-    await State.findOne({
+    await State.findByIdAndUpdate({
         _id: req.body.status
     }, {
         $push: {
-            likeList: req.body.number
+            likeList: 1
         }
     });
     res.json({
@@ -29,11 +29,11 @@ stateController.addLike = async (req, res) => {
 }
 
 stateController.addDontLike = async (req, res) => {
-    await State.findOne({
+    await State.findByIdAndUpdate({
         _id: req.body.status
     }, {
         $push: {
-            dontLikeList: req.body.number
+            dontLikeList: 1
         }
     });
     res.json({
@@ -42,7 +42,7 @@ stateController.addDontLike = async (req, res) => {
 }
 
 stateController.getStatusByShop = async (req, res) => {
-    
+
     const status = await State.find({
         'shopId': req.params.shop
     })
@@ -59,12 +59,14 @@ stateController.getStatusByShop = async (req, res) => {
 
 stateController.deleteState = async (req, res) => {
     console.log(req.params.id);
-    
+
     await State.findByIdAndDelete(req.params.id);
-    res.json({status: 'State deleted'});
+    res.json({
+        status: 'State deleted'
+    });
 }
 
-stateController.getStatusById = async (req, res) =>{
+stateController.getStatusById = async (req, res) => {
     const status = await State.findOne(req.params.id)
     if (status !== undefined) {
         res.json({
@@ -84,8 +86,14 @@ stateController.editState = async (req, res) => {
         description: req.body.description,
         user: req.body.user
     }
-    await State.findByIdAndUpdate(req.params.id, { $set: stateUpdated }, { new: true });
-    res.json({ status: 'States Updated' });
+    await State.findByIdAndUpdate(req.params.id, {
+        $set: stateUpdated
+    }, {
+        new: true
+    });
+    res.json({
+        status: 'States Updated'
+    });
 }
 
 module.exports = stateController;
