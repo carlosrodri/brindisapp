@@ -33,7 +33,7 @@ stateController.addDontLike = async (req, res) => {
         _id: req.body.status
     }, {
         $push: {
-            dontLikeList: 1
+            dontLikeList: 1-
         }
     });
     res.json({
@@ -67,7 +67,7 @@ stateController.deleteState = async (req, res) => {
 }
 
 stateController.getStatusById = async (req, res) => {
-    const status = await State.findOne(req.params.id)
+    const status = await State.findOne({_id: req.params.id})
     if (status !== undefined) {
         res.json({
             status: status
