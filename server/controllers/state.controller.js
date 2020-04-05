@@ -16,29 +16,57 @@ stateController.createState = async (req, res) => {
 }
 
 stateController.addLike = async (req, res) => {
-    await State.findByIdAndUpdate({
-        _id: req.body.status
-    }, {
-        $push: {
-            likeList: 1
-        }
-    });
-    res.json({
-        message: 'Te gusta este estado'
-    })
+    if (req.body.option === 'add') {
+        await State.findByIdAndUpdate({
+            _id: req.body.status
+        }, {
+            $push: {
+                likeList: 1
+            }
+        });
+        res.json({
+            message: 'Te gusta este estado'
+        })
+    } else {
+        await State.findByIdAndUpdate({
+            _id: req.body.status
+        }, {
+            $pop: {
+                likeList: -1
+            }
+        });
+        res.json({
+            message: 'Te gusta este estado'
+        })
+    }
+
 }
 
 stateController.addDontLike = async (req, res) => {
-    await State.findByIdAndUpdate({
-        _id: req.body.status
-    }, {
-        $push: {
-            dontLikeList: 1
-        }
-    });
-    res.json({
-        message: 'No gusta este estado'
-    })
+    if (req.body.option === 'add') {
+        await State.findByIdAndUpdate({
+            _id: req.body.status
+        }, {
+            $push: {
+                dontLikeList: 1
+            }
+        });
+        res.json({
+            message: 'No gusta este estado'
+        })
+    } else {
+        await State.findByIdAndUpdate({
+            _id: req.body.status
+        }, {
+            $pop: {
+                dontLikeList: -1
+            }
+        });
+        res.json({
+            message: 'No gusta este estado'
+        })
+    }
+
 }
 
 stateController.getStatusByShop = async (req, res) => {
@@ -67,7 +95,9 @@ stateController.deleteState = async (req, res) => {
 }
 
 stateController.getStatusById = async (req, res) => {
-    const status = await State.findOne({_id: req.params.id})
+    const status = await State.findOne({
+        _id: req.params.id
+    })
     if (status !== undefined) {
         res.json({
             status: status
