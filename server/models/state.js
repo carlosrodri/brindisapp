@@ -9,7 +9,10 @@ const stateSchema = new Schema({
     shopId: { type: String, required: true},
     ininthour: Date,
     statusImg: String,
-    avatarImg: String
+    avatarImg: String,
+    likeList: [Number],
+    dontLikeList: [Number]
+
 });
 
 module.exports = mongoose.model('State', stateSchema);

@@ -15,6 +15,32 @@ stateController.createState = async (req, res) => {
     });
 }
 
+stateController.addLike = async (req, res) => {
+    await State.findOneAndUpdate({
+        _id: req.body.status
+    }, {
+        $push: {
+            likeList: req.body.number
+        }
+    });
+    res.json({
+        message: 'Te gusta este estado'
+    })
+}
+
+stateController.addDontLike = async (req, res) => {
+    await State.findOneAndUpdate({
+        _id: req.body.status
+    }, {
+        $push: {
+            dontLikeList: req.body.number
+        }
+    });
+    res.json({
+        message: 'No gusta este estado'
+    })
+}
+
 stateController.getStatusByShop = async (req, res) => {
     
     const status = await State.find({
@@ -36,6 +62,20 @@ stateController.deleteState = async (req, res) => {
     
     await State.findByIdAndDelete(req.params.id);
     res.json({status: 'State deleted'});
+}
+
+stateController.getStatusById = async (req, res) =>{
+    const status = await State.findOne(req.params.id)
+    if (status !== undefined) {
+        res.json({
+            status: status
+        })
+    } else {
+        res.json({
+            status: 'error',
+            message: 'No hay un estado en la base de datos'
+        })
+    }
 }
 
 stateController.editState = async (req, res) => {
