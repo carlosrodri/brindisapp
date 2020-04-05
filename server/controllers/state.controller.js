@@ -16,7 +16,7 @@ stateController.createState = async (req, res) => {
 }
 
 stateController.addLike = async (req, res) => {
-    await State.findOneAndUpdate({
+    await State.findOne({
         _id: req.body.status
     }, {
         $push: {
@@ -29,7 +29,7 @@ stateController.addLike = async (req, res) => {
 }
 
 stateController.addDontLike = async (req, res) => {
-    await State.findOneAndUpdate({
+    await State.findOne({
         _id: req.body.status
     }, {
         $push: {
