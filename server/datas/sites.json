@@ -3230,6 +3230,13 @@
         "region": "Región Centro Oriente",
         "c_digo_dane_del_departamento": "25",
         "departamento": "Cundinamarca",
+        "c_digo_dane_del_municipio": "25214",
+        "municipio": "Bogotá"
+    },
+    {
+        "region": "Región Centro Oriente",
+        "c_digo_dane_del_departamento": "25",
+        "departamento": "Cundinamarca",
         "c_digo_dane_del_municipio": "25224",
         "municipio": "Cucunubá"
     },
