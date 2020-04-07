@@ -5,6 +5,6 @@ const match = require('../controllers/match.controller')
 
 router.get('/shop/:shopId', match.getMatchByShop)
 router.get('/', match.getMatches)
-router.post('/', match.getMatchByShop)
+router.post('/', match.add)
 
 module.exports = router
