@@ -2,6 +2,10 @@ const Match = require('../models/match')
 const matchController = {}
 
 matchController.add = async (req, res) => {
+    console.log('entraaaaaaaaaaaaaaaa');
+    console.log('lo que llega   ' + req.body);
+    
+    
     const match = new Match(req.body)
     await match.save()
 
