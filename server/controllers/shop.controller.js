@@ -57,7 +57,6 @@ shopController.getShopByMail = async (req, res) => {
         console.log('entra acaca lka momomomooomomo');
         
         res.json({
-            status: 'succes',
             shop: shop
         });
     }
