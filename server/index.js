@@ -6,7 +6,6 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
-const http = require('http')
 const cloudinary = require('cloudinary')
 cloudinary.config({
     cloud_name: 'brindis',
@@ -57,17 +56,17 @@ app.use('/api/matches', require('./routes/match.routes'))
 
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
-    State.findByIdAndDelete('5e87ffeed73de7001733e254')
     const status = await State.find();
     status.forEach(element => {
         console.log(element._id + ' jajajajjaj');
 
+        State.findByIdAndDelete(element._id, (err, res) => {
+            console.log(res + ' borraaaaa');
+        })
     });
 }, 60000)
 
-http.delete('https://brindis-js.herokuapp.com/api/events/5e87ffeed73de7001733e254', (res) => {
-    console.log('deleted');
-})
+
 
 //Starting server
 app.listen(app.get('port'), () => {
