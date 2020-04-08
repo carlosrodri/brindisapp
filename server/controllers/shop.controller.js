@@ -47,11 +47,15 @@ shopController.getShopByMail = async (req, res) => {
     console.log(shop.name + ' lo que obtiene');
     
     if (shop.name === undefined) {
+        console.log('undepaila');
+
         res.json({
             status: 'error',
             message: 'No hay bares con este mail'
         })
     } else {
+        console.log('entra acaca lka momomomooomomo');
+        
         res.json({
             status: 'succes',
             shop: shop
