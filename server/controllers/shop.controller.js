@@ -41,12 +41,12 @@ shopController.createShop = async (req, res) => {
 }
 
 shopController.getShopByMail = async (req, res) => {
-    const shop = await Shop.find({
+    const shop = await Shop.findOne({
         'mail': req.params.mail
     });
-    console.log(shop + ' lo que obtiene');
+    console.log(shop.name + ' lo que obtiene');
     
-    if (shop === undefined) {
+    if (shop.name === undefined) {
         res.json({
             status: 'error',
             message: 'No hay bares con este mail'
@@ -54,7 +54,7 @@ shopController.getShopByMail = async (req, res) => {
     } else {
         res.json({
             status: 'succes',
-            shop: shop[0]
+            shop: shop
         });
     }
 }
