@@ -58,10 +58,11 @@ app.use('/api/matches', require('./routes/match.routes'))
 setInterval(async function clearStatus() {
     const status = await State.find();
     status.forEach(element => {
-        State.findByIdAndDelete(element._id, (err, res) => {
-        })
+        /*State.findByIdAndDelete(element._id, (err, res) => {
+            console.log('delete');
+        })*/
     });
-}, 60000)
+}, 86400000)
 
 
 
