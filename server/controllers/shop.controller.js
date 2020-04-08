@@ -44,6 +44,8 @@ shopController.getShopByMail = async (req, res) => {
     const shop = await Shop.find({
         'mail': req.params.mail
     });
+    console.log(shop + ' lo que obtiene');
+    
     if (shop === undefined) {
         res.json({
             status: 'error',
