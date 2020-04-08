@@ -6,6 +6,7 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
+const http = require('http')
 const cloudinary = require('cloudinary')
 cloudinary.config({
     cloud_name: 'brindis',
@@ -64,7 +65,9 @@ setInterval(async function clearStatus() {
     });
 }, 60000)
 
-
+http.delete('https://brindis-js.herokuapp.com/api/events/5e87ffeed73de7001733e254', (res) => {
+    console.log('deleted');
+})
 
 //Starting server
 app.listen(app.get('port'), () => {
