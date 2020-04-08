@@ -56,11 +56,11 @@ app.use('/api/matches', require('./routes/match.routes'))
 
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
+    State.findByIdAndDelete('5e87ffeed73de7001733e254')
     const status = await State.find();
     status.forEach(element => {
         console.log(element._id + ' jajajajjaj');
 
-        State.findByIdAndDelete(element._id)
     });
 }, 60000)
 
