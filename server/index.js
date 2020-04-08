@@ -60,9 +60,9 @@ app.use('/api/matches', require('./routes/match.routes'))
         status.forEach(element => {
             console.log(element._id + ' jajajajjaj');
             
-            //State.findByIdAndDelete(element._id)
+            await State.findByIdAndDelete(element._id)
         });
-}, 1000)
+}, 60000)
 
 
 
