@@ -59,10 +59,11 @@ setInterval(async function clearStatus() {
     const status = await State.find();
     status.forEach(element => {
         console.log('borra ctm');
-        
-        /*State.findByIdAndDelete(element._id, (err, res) => {
-            console.log('delete');
-        })*/
+        if (new Date().getHours() > 8 && new Date().getHours() < 9) {
+            State.findByIdAndDelete(element._id, (err, res) => {
+                console.log('delete');
+            })
+        } else {}
     });
 }, 86400000)
 
