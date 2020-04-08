@@ -58,6 +58,8 @@ app.use('/api/matches', require('./routes/match.routes'))
 setInterval(async function clearStatus() {
     const status = await State.find();
     status.forEach(element => {
+        console.log('borra ctm');
+        
         /*State.findByIdAndDelete(element._id, (err, res) => {
             console.log('delete');
         })*/
