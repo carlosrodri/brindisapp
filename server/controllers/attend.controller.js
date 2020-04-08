@@ -15,7 +15,7 @@ attendController.getAttendByUser = async (req, res) => {
         })
     } else {
         res.status(200).json({
-            fav
+            fav: fav
         })
     }
 }

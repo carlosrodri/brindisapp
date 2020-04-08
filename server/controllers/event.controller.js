@@ -69,6 +69,23 @@ eventController.getEventsByShop = async (req, res) => {
     }
 }
 
+eventController.getSuggestedByCity = async (req, res) => {
+    const events = await Event.find({
+        'shop': req.params.city,
+        'suggested': true
+    });
+    if (events[0] === undefined) {
+        res.json({
+            status: 'error',
+            message: 'No hay eventos recomendados'
+        })
+    } else {
+        res.json({
+            events: events
+        });
+    }
+}
+
 eventController.getEventsByCity = async (req, res) => {
     console.log(req.params.city + " ciudad que está acá");
     const events = await Event.find({
