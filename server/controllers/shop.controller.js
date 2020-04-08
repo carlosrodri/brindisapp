@@ -44,8 +44,6 @@ shopController.getShopByMail = async (req, res) => {
     const shop = await Shop.findOne({
         'mail': req.params.mail
     });
-    console.log(shop.name + ' lo que obtiene');
-    
     if (shop.name === undefined) {
         console.log('undepaila');
 
@@ -54,8 +52,6 @@ shopController.getShopByMail = async (req, res) => {
             message: 'No hay bares con este mail'
         })
     } else {
-        console.log('entra acaca lka momomomooomomo');
-        
         res.json({
             shop: shop
         });
