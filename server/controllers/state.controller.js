@@ -3,7 +3,7 @@ const stateController = {}
 
 stateController.getStatus = async (req, res) => {
     const status = await State.find();
-    res.json(status);
+    res.json({status: status});
 }
 
 stateController.createState = async (req, res) => {
