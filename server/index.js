@@ -57,7 +57,7 @@ app.use('/api/matches', require('./routes/match.routes'))
 app.post('/api/payment', (req, res) => {
     stripe.charges.create(
         {
-          amount: 7,
+          amount: 7*1000,
           currency: 'usd',
           source: 'tok_amex',
           description: 'My First Test Charge (created for API docs)',
