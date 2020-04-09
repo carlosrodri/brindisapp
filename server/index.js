@@ -9,14 +9,6 @@ const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const stripe = require('stripe')('sk_test_9WLtiV0mcMFRIvMnNyCFo4Nf00hUUNAVV5')
 
-stripe.charges.retrieve('ch_1GW1KpC13hya6W13vaLkRtyj', {
-    api_key: 'sk_test_9WLtiV0mcMFRIvMnNyCFo4Nf00hUUNAVV5'
-  });
-
-  stripe.charges.retrieve('ch_1GW1KpC13hya6W13vaLkRtyj', {
-    stripeAccount: 'acct_1GPTucC13hya6W13'
-  });
-  
 cloudinary.config({
     cloud_name: 'brindis',
     api_key: '191576662983511',
