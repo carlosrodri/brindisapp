@@ -55,12 +55,14 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.post("/api/payment", (req, res) => {
+    console.log(req.body + ' body');
+    
     try {
         stripe.customers
             .create({
                 name: req.body.name,
                 email: req.body.email,
-                token: req.body.stripeToken
+                source: req.body.stripeToken
             })
             .then(customer =>
                 stripe.charges.create({
