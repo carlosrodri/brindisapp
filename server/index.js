@@ -8,7 +8,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const stripe = require('stripe')('sk_test_9WLtiV0mcMFRIvMnNyCFo4Nf00hUUNAVV5')
-
 cloudinary.config({
     cloud_name: 'brindis',
     api_key: '191576662983511',
@@ -17,6 +16,9 @@ cloudinary.config({
 
 app.use(cors())
 
+const {
+    mongoose
+} = require('./database');
 
 // Settimgs
 app.set('port', process.env.PORT || 3002);
@@ -77,6 +79,7 @@ app.post('/api/payment', (req, res) => {
         }
     )
 })
+
 
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
