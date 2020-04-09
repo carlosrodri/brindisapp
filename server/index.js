@@ -8,6 +8,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const stripe = require('stripe')('sk_test_9WLtiV0mcMFRIvMnNyCFo4Nf00hUUNAVV5')
+
 cloudinary.config({
     cloud_name: 'brindis',
     api_key: '191576662983511',
@@ -16,9 +17,6 @@ cloudinary.config({
 
 app.use(cors())
 
-const {
-    mongoose
-} = require('./database');
 
 // Settimgs
 app.set('port', process.env.PORT || 3002);
@@ -54,35 +52,31 @@ app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
-app.post("/api/payment", (req, res) => {
-    console.log(req.body.source + ' body');
-    
-    try {
-        stripe.customers
-            .create({
-                name: req.body.name,
-                email: req.body.email,
-                source: req.body.stripeToken
-            })
-            .then(customer =>
-                stripe.charges.create({
-                    amount: req.body.amount * 100,
-                    currency: "usd",
-                    customer: customer.id
+app.post('/api/payment', (req, res) => {
+    stripe.paymentMethods.create({
+            type: 'card',
+            card: {
+                number: req.body.number,
+                exp_month: req.body.expMonth,
+                exp_year: req.body.expYear,
+                cvc: req.body.cvc,
+            },
+        },
+        function (err, paymentMethod) {
+            if (err) {
+                res.json({
+                    status: 'error',
+                    message: err
                 })
-            )
-            .then(() => res.json({
-                status: 'succes',
-                message: 'pago registrado con exito'
-            }))
-            .catch(err => console.log(err));
-    } catch (err) {
-        res.json({
-            status: 'error',
-            message: err
-        });
-    }
-});
+            } else {
+                res.json({
+                    status: 'succes',
+                    message: paymentMethod
+                })
+            }
+        }
+    )
+})
 
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
