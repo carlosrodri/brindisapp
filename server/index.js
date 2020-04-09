@@ -59,7 +59,7 @@ app.post('/api/payment', (req, res) => {
         {
           amount: 25000*100,
           currency: 'cop',
-          source: req.params.token,
+          source: req.body.token,
           description: 'My First Test Charge (created for API docs)',
         },
         function(err, charge) {
