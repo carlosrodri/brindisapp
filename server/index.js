@@ -55,7 +55,7 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.post("/api/payment", (req, res) => {
-    console.log(req.body + ' body');
+    console.log(req.body.source + ' body');
     
     try {
         stripe.customers
