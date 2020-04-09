@@ -55,22 +55,27 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.post('/api/payment', (req, res) => {
+
     stripe.paymentMethods.create({
             type: 'card',
             card: {
-                number: req.body.number,
-                exp_month: req.body.expMonth,
-                exp_year: req.body.expYear,
-                cvc: req.body.cvc,
+                number: '4242424242424242',
+                exp_month: 4,
+                exp_year: 2021,
+                cvc: '314',
             },
         },
         function (err, paymentMethod) {
             if (err) {
+                console.log(err + ' error');
+                
                 res.json({
                     status: 'error',
                     message: err
                 })
             } else {
+                console.log(paymentMethod + ' paymenene');
+                
                 res.json({
                     status: 'succes',
                     message: paymentMethod
