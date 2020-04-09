@@ -7,6 +7,7 @@ const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
+const stripe = require('stripe')('sk_test_9WLtiV0mcMFRIvMnNyCFo4Nf00hUUNAVV5')
 cloudinary.config({
     cloud_name: 'brindis',
     api_key: '191576662983511',
@@ -53,6 +54,33 @@ app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
+app.post("/api/payment", (req, res) => {
+    try {
+        stripe.customers
+            .create({
+                name: req.body.name,
+                email: req.body.email,
+                token: req.body.stripeToken
+            })
+            .then(customer =>
+                stripe.charges.create({
+                    amount: req.body.amount * 100,
+                    currency: "usd",
+                    customer: customer.id
+                })
+            )
+            .then(() => res.json({
+                status: 'succes',
+                message: 'pago registrado con exito'
+            }))
+            .catch(err => console.log(err));
+    } catch (err) {
+        res.json({
+            status: 'error',
+            message: err
+        });
+    }
+});
 
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
