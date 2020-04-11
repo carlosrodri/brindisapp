@@ -28,21 +28,8 @@ paymentController.addPayment = async (req, res) => {
     })
 }
 
-paymentController.updatePayment = async (req, res) => {
-    const paymentUpdated = {
-        payDate: req.body.payDate,
-        userMail: req.body.userMail,
-        defeat: req.body.defeat
-    }
-    await Payment.findByIdAndUpdate(req.params.id, {
-        $set: paymentUpdated
-    }, {
-        new: true
-    });
-    res.json({
-        status: 'succes',
-        message: 'Pago Registrado'
-    })
+paymentController.getPyaments = async (req, res)=>{
+    const payments = await Payment.find()
+    res.json({payments:payments})
 }
-
 module.exports = paymentController

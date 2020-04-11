@@ -6,7 +6,6 @@ const shopSchema = new Schema({
     name: {type: String, required: true},
     nickname: {type: String, required: true},
     description: {type: String, required: true},
-    licenseNumber: {type: Number, required: true},
     officeHours: {type: String, required: true},
     lat: Number,
     lon: Number,
