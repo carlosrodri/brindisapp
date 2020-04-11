@@ -6,7 +6,7 @@ paymentController.getPaymentByMail = async (req, res) => {
         'userMail': req.params.mail
     })
     console.log(payment);
-    
+
     if (payment === null) {
         res.json({
             status: 'error',
@@ -28,13 +28,19 @@ paymentController.addPayment = async (req, res) => {
     })
 }
 
-paymentController.deletePayment = async (req, res)=>{
-    Payment.findByIdAndDelete(req.params.id)
-    res.json({statys: 'delete'})
+paymentController.deletePayment = async (req, res) => {
+    console.log(req.params.id);
+    
+    await Payment.findByIdAndDelete(req.params.id)
+    res.json({
+        statys: 'delete'
+    })
 }
 
-paymentController.getPyaments = async (req, res)=>{
+paymentController.getPyaments = async (req, res) => {
     const payments = await Payment.find()
-    res.json({payments:payments})
+    res.json({
+        payments: payments
+    })
 }
 module.exports = paymentController
