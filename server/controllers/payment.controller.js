@@ -28,6 +28,11 @@ paymentController.addPayment = async (req, res) => {
     })
 }
 
+paymentController.deletePayment = async (req, res)=>{
+    Payment.findByIdAndDelete(req.params.id)
+    res.json({statys: 'delete'})
+}
+
 paymentController.getPyaments = async (req, res)=>{
     const payments = await Payment.find()
     res.json({payments:payments})
