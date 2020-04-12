@@ -10,6 +10,8 @@ eventController.getEventById = async (req, res) => {
     const event = await Event.find({
         '_id': req.params.id
     });
+    console.log(event);
+    
     res.json({
         event: event
     });
