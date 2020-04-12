@@ -25,6 +25,7 @@ app.set('port', process.env.PORT || 3002);
 
 //Middlewares
 app.use(bodyParser.json())
+app.set('etag', false)
 app.use(bodyParser.urlencoded({
   extended: true
 }))
