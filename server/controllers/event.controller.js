@@ -11,7 +11,7 @@ eventController.getEventById = async (req, res) => {
         '_id': req.params.id
     });
     console.log(event);
-    
+
     res.json({
         event: event
     });
@@ -35,10 +35,9 @@ eventController.deleteEvent = async (req, res) => {
 }
 
 eventController.updateEvent = async (req, res) => {
-    console.log(req.params.id);
-    console.log(req.body.imageUrl);
-
-    const eventUpdated = new Event({
+    await Event.update({
+        _id: req.params.id
+    }, {
         date: req.body.date,
         description: req.body.description,
         name: req.body.name,
@@ -47,15 +46,11 @@ eventController.updateEvent = async (req, res) => {
         initHour: req.body.initHour,
         city: req.body.city,
         imageUrl: req.body.imageUrl
-    });
-    await Event.findByIdAndUpdate(req.params.id, {
-        $set: eventUpdated
-    }, {
-        new: true
-    });
-    res.json({
-        'status': 'Evento actualizado'
-    });
+    }, function (err, affected, resp) {
+        res.json({
+            'status': 'Evento actualizado'
+        });
+    })
 }
 
 eventController.getEventsByShop = async (req, res) => {
