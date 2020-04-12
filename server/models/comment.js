@@ -6,7 +6,7 @@ const commentSchema = new Schema({
     description: { type: String, required: true },
     userMail: { type: String, required: true },
     nickname: { type: String, required: true },
-    imageUrl: string,
+    imageUrl: String,
     shopId: { type: String, required: true}
 });
 
