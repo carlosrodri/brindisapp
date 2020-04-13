@@ -135,7 +135,7 @@ setTimeout(async()=>{
     status.forEach(element => {
       console.log('borra ctm');
       if (new Date().getHours()-5 === 8) {
-        State.findByIdAndDelete(element._id, (err, res) => {
+        state.findByIdAndDelete(element._id, (err, res) => {
           console.log('delete');
         })
       } else {}
@@ -148,7 +148,7 @@ setInterval(async function clearStatus() {
   status.forEach(element => {
     console.log('borra ctm');
     if (new Date().getHours()-5 === 8) {
-      State.findByIdAndDelete(element._id, (err, res) => {
+      state.findByIdAndDelete(element._id, (err, res) => {
         console.log('delete');
       })
     } else {}
