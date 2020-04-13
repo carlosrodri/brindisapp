@@ -126,7 +126,7 @@ app.post('/api/payment', (req, res) => {
     }
   )
 })
-console.log('afuera');
+console.log('afuera ' + new Date().getHours());
 
 if (new Date().getHours() === 8) {
   console.log('entraa');
