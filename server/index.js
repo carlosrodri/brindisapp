@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const State = require('./models/state');
 const app = express();
+const State = require('./models/state')
 const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
