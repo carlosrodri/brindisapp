@@ -126,8 +126,11 @@ app.post('/api/payment', (req, res) => {
     }
   )
 })
+console.log('afuera');
 
-if (new Date().getHours() >= 8 && new Date().getHours() <= 9) {
+if (new Date().getHours() === 8) {
+  console.log('entraa');
+  
   State.findByIdAndDelete(element._id, (err, res) => {
     console.log('delete');
   })
@@ -137,7 +140,7 @@ setInterval(async function clearStatus() {
   const status = await State.find();
   status.forEach(element => {
     console.log('borra ctm');
-    if (new Date().getHours() >= 8 && new Date().getHours() <= 9) {
+    if (new Date().getHours() === 8) {
       State.findByIdAndDelete(element._id, (err, res) => {
         console.log('delete');
       })
