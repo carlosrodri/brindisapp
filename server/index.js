@@ -128,9 +128,15 @@ app.post('/api/payment', (req, res) => {
 })
 
 if (new Date().getHours()-5 === 8) {
-  await state.findByIdAndDelete(element._id, (err, res) => {
-    console.log('delete');
-  })
+  const status = await state.find();
+  status.forEach(element => {
+    console.log('borra ctm');
+    if (new Date().getHours()-5 === 8) {
+      State.findByIdAndDelete(element._id, (err, res) => {
+        console.log('delete');
+      })
+    } else {}
+  });
 }
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
