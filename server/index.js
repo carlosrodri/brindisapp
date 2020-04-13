@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
-const State = require('./models/state')
+const state = require('./models/state')
 const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
@@ -128,13 +128,13 @@ app.post('/api/payment', (req, res) => {
 })
 
 if (new Date().getHours()-5 === 8) {
-  State.findByIdAndDelete(element._id, (err, res) => {
+  await state.findByIdAndDelete(element._id, (err, res) => {
     console.log('delete');
   })
 }
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
-  const status = await State.find();
+  const status = await state.find();
   status.forEach(element => {
     console.log('borra ctm');
     if (new Date().getHours()-5 === 8) {
