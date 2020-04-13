@@ -127,7 +127,7 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-async function f(params){
+setTimeout(()=>{
   if (new Date().getHours()-5 === 8) {
     console.log('entra ' + new Date().getHours()-5);
     
@@ -141,8 +141,7 @@ async function f(params){
       } else {}
     });
   }
-}
-
+},1000)
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
   const status = await state.find();
