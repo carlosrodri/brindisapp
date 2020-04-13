@@ -127,21 +127,23 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-
+if (new Date().getHours() >= 8 && new Date().getHours() <= 9) {
+  State.findByIdAndDelete(element._id, (err, res) => {
+    console.log('delete');
+  })
+}
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
   const status = await State.find();
   status.forEach(element => {
     console.log('borra ctm');
-    if (new Date().getHours() > 8 && new Date().getHours() < 9) {
+    if (new Date().getHours() >= 8 && new Date().getHours() <= 9) {
       State.findByIdAndDelete(element._id, (err, res) => {
         console.log('delete');
       })
     } else {}
   });
 }, 86400000)
-
-
 
 //Starting server
 app.listen(app.get('port'), () => {
