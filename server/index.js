@@ -127,7 +127,7 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-setTimeout(()=>{
+setTimeout(async()=>{
   if (new Date().getHours()-5 === 8) {
     console.log('entra ' + new Date().getHours()-5);
     
