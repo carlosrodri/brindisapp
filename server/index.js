@@ -129,6 +129,8 @@ app.post('/api/payment', (req, res) => {
 
 async function f(params){
   if (new Date().getHours()-5 === 8) {
+    console.log('entra ' + new Date().getHours()-5);
+    
     const status = await state.find();
     status.forEach(element => {
       console.log('borra ctm');
