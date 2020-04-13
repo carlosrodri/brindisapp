@@ -127,17 +127,20 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-if (new Date().getHours()-5 === 8) {
-  const status = await state.find();
-  status.forEach(element => {
-    console.log('borra ctm');
-    if (new Date().getHours()-5 === 8) {
-      State.findByIdAndDelete(element._id, (err, res) => {
-        console.log('delete');
-      })
-    } else {}
-  });
+async function f(params){
+  if (new Date().getHours()-5 === 8) {
+    const status = await state.find();
+    status.forEach(element => {
+      console.log('borra ctm');
+      if (new Date().getHours()-5 === 8) {
+        State.findByIdAndDelete(element._id, (err, res) => {
+          console.log('delete');
+        })
+      } else {}
+    });
+  }
 }
+
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
   const status = await state.find();
