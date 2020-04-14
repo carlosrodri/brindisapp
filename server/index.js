@@ -128,7 +128,7 @@ app.post('/api/payment', (req, res) => {
 })
 
 setTimeout(async()=>{
-  if (new Date().getHours()-5 === 8) {
+  if (new Date().getHours()-5 >= 8 && new Date().getHours()-5 <= 17) {
     console.log('entra ' + new Date().getHours()-5);
     
     const status = await state.find();
@@ -147,7 +147,7 @@ setInterval(async function clearStatus() {
   const status = await state.find();
   status.forEach(element => {
     console.log('borra ctm');
-    if (new Date().getHours()-5 === 8) {
+    if (new Date().getHours()-5 >= 8 && new Date().getHours()-5 <= 17) {
       state.findByIdAndDelete(element._id, (err, res) => {
         console.log('delete');
       })
