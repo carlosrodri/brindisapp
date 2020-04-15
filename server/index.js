@@ -7,7 +7,7 @@ const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
-const Codes = require('./models/code')
+const Code = require('./models/code')
 const stripe = require('stripe')('sk_live_2eSkHSBMQDLGDSbPN7VlGi2M00aNO46BvI')
 cloudinary.config({
   cloud_name: 'brindis',
