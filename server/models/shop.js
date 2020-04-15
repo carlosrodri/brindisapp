@@ -13,7 +13,8 @@ const shopSchema = new Schema({
     qualificationList: [Number],
     direction: String,
     city: String,
-    imageUrl: String
+    imageUrl: String,
+    phoneToken: String
 });
 
 module.exports = mongoose.model('Shop', shopSchema);

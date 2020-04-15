@@ -9,7 +9,8 @@ const userSchema = new Schema({
     name: String,
     nickname: String,
     password: String,
-    imageUrl: String
+    imageUrl: String,
+    phoneToken: String
 });
 
 userSchema.method.encryptPassword = async (password) => {
