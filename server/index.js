@@ -7,6 +7,7 @@ const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
+const Codes = require('./models/code')
 const stripe = require('stripe')('sk_live_2eSkHSBMQDLGDSbPN7VlGi2M00aNO46BvI')
 cloudinary.config({
   cloud_name: 'brindis',
@@ -127,27 +128,43 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-setTimeout(async()=>{
-  if (new Date().getHours()-5 >= 8 && new Date().getHours()-5 <= 17) {
-    console.log('entra ' + new Date().getHours()-5);
-    
+async function getARandomOneInRange() {
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  for (let index = 0; index < 150; index++) {
+    const p = possible.charAt(Math.floor(Math.random() * possible.length));
+    const code = new Code({
+      code: p,
+      value: true
+    })
+    console.log('guardando codigos');
+
+    await code.save()
+  }
+}
+
+getARandomOneInRange()
+
+setTimeout(async () => {
+  if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
+    console.log('entra ' + new Date().getHours() - 5);
+
     const status = await state.find();
     status.forEach(element => {
       console.log('borra ctm');
-      if (new Date().getHours()-5 === 8) {
+      if (new Date().getHours() - 5 === 8) {
         state.findByIdAndDelete(element._id, (err, res) => {
           console.log('delete');
         })
       } else {}
     });
   }
-},1000)
+}, 1000)
 //TO-DO llamar al metodo de routes para eliminar todos los estados
 setInterval(async function clearStatus() {
   const status = await state.find();
   status.forEach(element => {
     console.log('borra ctm');
-    if (new Date().getHours()-5 >= 8 && new Date().getHours()-5 <= 17) {
+    if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
       state.findByIdAndDelete(element._id, (err, res) => {
         console.log('delete');
       })
