@@ -134,7 +134,7 @@ async function getARandomOneInRange() {
     const p = possible.charAt(Math.floor(Math.random() * possible.length));
     const code = new Code({
       code: p,
-      value: true
+      val: true
     })
     console.log('guardando codigos');
 
