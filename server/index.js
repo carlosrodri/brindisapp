@@ -129,7 +129,14 @@ app.post('/api/payment', (req, res) => {
 })
 
 async function getARandomOneInRange() {
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const code = await Code.find()
+code.forEach(element => {
+  Code.findByIdAndDelete(element._id, (req, res=>{
+
+  }))
+});
+
+  /*var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   for (let index = 0; index < 150; index++) {
     const p = possible.charAt(Math.floor(Math.random() * possible.length));
     const code = new Code({
@@ -139,7 +146,7 @@ async function getARandomOneInRange() {
     console.log('guardando codigos');
 
     await code.save()
-  }
+  }*/
 }
 
 getARandomOneInRange()
