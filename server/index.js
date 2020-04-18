@@ -128,7 +128,7 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-async function getARandomOneInRange() {
+/*async function getARandomOneInRange() {
   const code = await Code.find()
 code.forEach(element => {
   Code.findByIdAndDelete(element._id, (req, res=>{
@@ -146,10 +146,10 @@ code.forEach(element => {
     console.log('guardando codigos');
 
     await code.save()
-  }*/
-}
+  }
+}*/
 
-getARandomOneInRange()
+//getARandomOneInRange()
 
 setTimeout(async () => {
   if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
