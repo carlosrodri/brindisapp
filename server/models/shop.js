@@ -14,7 +14,9 @@ const shopSchema = new Schema({
     direction: String,
     city: String,
     imageUrl: String,
-    phoneToken: String
+    phoneToken: String,
+    openHour:Date,
+    phone: Number
 });
 
 module.exports = mongoose.model('Shop', shopSchema);
