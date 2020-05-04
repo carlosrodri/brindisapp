@@ -151,7 +151,7 @@ code.forEach(element => {
 
 //getARandomOneInRange()
 
-function async() {
+async function deletes() {
   const code = await Code.find()
   code.forEach(element => {
     Code.findByIdAndDelete(element._id, (req, res =>{
@@ -159,6 +159,8 @@ function async() {
     }))
   });
 }
+
+deletes()
 
 setTimeout(async () => {
   if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
