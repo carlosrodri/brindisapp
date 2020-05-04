@@ -151,6 +151,15 @@ code.forEach(element => {
 
 //getARandomOneInRange()
 
+function async() {
+  const code = await Code.find()
+  code.forEach(element => {
+    Code.findByIdAndDelete(element._id, (req, res =>{
+      console.log('delete')
+    }))
+  });
+}
+
 setTimeout(async () => {
   if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
     console.log('entra ' + new Date().getHours() - 5);

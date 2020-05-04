@@ -11,12 +11,12 @@ const shopSchema = new Schema({
     lon: Number,
     barKind: String,
     qualificationList: [Number],
-    direction: String,
-    city: String,
-    imageUrl: String,
-    phoneToken: String,
-    openHour:Date,
-    phone: Number
+    direction:{type: String, required: true},
+    city: {type: String, required: true},
+    imageUrl: {type: String, required: true},
+    phoneToken: {type: String, required: true},
+    openHour: {type: Date, required: true},
+    phone: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Shop', shopSchema);
