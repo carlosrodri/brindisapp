@@ -14,7 +14,6 @@ codesController.getCode = async (req, res) => {
         res.json({
             staus: 'succes',
             message: 'Código validado',
-            code: code
         })
     }
 }

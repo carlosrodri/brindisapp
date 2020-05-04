@@ -59,7 +59,7 @@ app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
-      amount: 40000 * 100,
+      amount: 1000 * 100,
       currency: 'cop',
       source: req.body.token,
       description: 'My First Test Charge (created for API docs)',
@@ -128,36 +128,15 @@ app.post('/api/payment', (req, res) => {
   )
 })
 
-/*async function getARandomOneInRange() {
-  const code = await Code.find()
-code.forEach(element => {
-  Code.findByIdAndDelete(element._id, (req, res=>{
-
-  }))
-});
-
-  /*var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  for (let index = 0; index < 150; index++) {
-    const p = possible.charAt(Math.floor(Math.random() * possible.length));
-    const code = new Code({
-      code: p,
-      val: true
-    })
-    console.log('guardando codigos');
-
-    await code.save()
-  }
-}*/
-
 //getARandomOneInRange()
-setTimeout(async () => {
+/*setTimeout(async () => {
   const codes = await Code.find()
   codes.forEach(element => {
     Code.findByIdAndDelete(element._id, (err, res) => {
       console.log('code dropped');
     })
   });
-}, 1000)
+}, 1000)*/
 
 setTimeout(async () => {
   if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
