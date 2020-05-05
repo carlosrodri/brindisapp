@@ -60,9 +60,9 @@ app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
       amount: 1000 * 100,
-      currency: 'cop',
+      currency: 'COP',
       source: req.body.token,
-      description: 'Pago subscripciín Brindis App Bar Manager',
+      description: 'Pago subscripción Brindis App Bar Manager',
     },
     function (err, charge) {
       if (err) {
