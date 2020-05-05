@@ -58,17 +58,14 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/payment', (req, res) => {
-  console.log(req.body.token);
   stripe.charges.create({
-      amount: 2000 * 100,
+      amount: 40000 * 100,
       currency: 'cop',
       source: req.body.token,
       description: 'Pago subscripción Brindis App Bar Manager',
     },
     function (err, charge) {
       if (err) {
-        console.log(err);
-        console.log(err.description);
         switch (err.type) {
           case 'StripeCardError':
             // => e.g. "Your card's expiration year is invalid."
