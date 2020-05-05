@@ -87,7 +87,7 @@ app.post('/api/payment', (req, res) => {
             // Invalid parameters were supplied to Stripe's API
             res.json({
               status: 'error',
-              message: 'StripeInvalidRequestError'
+              message: err
             })
             break;
           case 'StripeAPIError':
