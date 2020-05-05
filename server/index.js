@@ -59,7 +59,6 @@ app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.post('/api/payment', (req, res) => {
   console.log(req.body.token);
-  console.log(req.body.card.token);
   stripe.charges.create({
       amount: 1000 * 100,
       currency: 'cop',
