@@ -30,6 +30,32 @@ shopController.addQualification = async (req, res) => {
     })
 }
 
+shopController.addLike = async (req, res) => {
+    await Shop.findOneAndUpdate({
+        _id: req.body.shop
+    }, {
+        $push: {
+            likeList: req.body.user
+        }
+    });
+    res.json({
+        message: 'Te gusta este bar'
+    })
+}
+
+shopController.quitLike = async(req, res) =>{
+    await Shop.findByIdAndUpdate({
+        _id: req.body.shop
+    }, {
+        $pop: {
+            likeList: -1
+        }
+    });
+    res.json({
+        message: 'No te gusta este estado'
+    })
+}
+
 shopController.createShop = async (req, res) => {
     const shop = new Shop(req.body);
     await shop.save();

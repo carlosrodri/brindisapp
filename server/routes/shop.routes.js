@@ -12,5 +12,7 @@ router.get('/city/:city', shop.getShopByCity);
 router.delete('/:id', shop.deleteShop);
 router.put('/:id', shop.editShop);
 router.post('/qualification', shop.addQualification);
+router.post('/like', shop.addLike);
+router.post('/quitLike', shop.quitLike);
 
 module.exports = router;

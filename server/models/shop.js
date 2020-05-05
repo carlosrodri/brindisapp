@@ -11,11 +11,13 @@ const shopSchema = new Schema({
     lon: Number,
     barKind: String,
     qualificationList: [Number],
+    likeList:[String],
     direction:{type: String, required: true},
     city: {type: String, required: true},
     imageUrl: {type: String, required: true},
     phoneToken: {type: String, required: true},
     openHour: {type: Date, required: true},
+    closeHour: {type: Date, required: true},
     phone: {type: String, required: true}
 });
 
