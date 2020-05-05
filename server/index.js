@@ -62,7 +62,7 @@ app.post('/api/payment', (req, res) => {
       amount: 1000 * 100,
       currency: 'cop',
       source: req.body.token,
-      description: 'My First Test Charge (created for API docs)',
+      description: 'Pago subscripciín Brindis App Bar Manager',
     },
     function (err, charge) {
       if (err) {
