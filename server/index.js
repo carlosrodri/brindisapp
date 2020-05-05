@@ -85,28 +85,28 @@ app.post('/api/payment', (req, res) => {
             // Invalid parameters were supplied to Stripe's API
             res.json({
               status: 'error',
-              message: 'Ha ocurrido un error en el servidor, vuelve a intentarlo'
+              message: 'StripeInvalidRequestError'
             })
             break;
           case 'StripeAPIError':
             // An error occurred internally with Stripe's API
             res.json({
               status: 'error',
-              message: 'Ha ocurrido un error en el servidor, vuelve a intentarlo'
+              message: 'StripeAPIError'
             })
             break;
           case 'StripeConnectionError':
             // Some kind of error occurred during the HTTPS communication
             res.json({
               status: 'error',
-              message: 'Ha ocurrido un error en el servidor, vuelve a intentarlo'
+              message: 'StripeConnectionError'
             })
             break;
           case 'StripeAuthenticationError':
             // You probably used an incorrect API key
             res.json({
               status: 'error',
-              message: 'Ha ocurrido un error en el servidor, vuelve a intentarlo'
+              message: 'StripeAuthenticationError'
             })
             break;
           default:
