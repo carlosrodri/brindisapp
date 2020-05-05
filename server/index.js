@@ -67,6 +67,8 @@ app.post('/api/payment', (req, res) => {
     },
     function (err, charge) {
       if (err) {
+        console.log(err);
+        console.log(err.description);
         switch (err.type) {
           case 'StripeCardError':
             // => e.g. "Your card's expiration year is invalid."
