@@ -48,7 +48,7 @@ shopController.quitLike = async(req, res) =>{
         _id: req.body.shop
     }, {
         $pop: {
-            likeList: req.body.user
+            likeList: -1
         }
     });
     res.json({
