@@ -54,10 +54,12 @@ app.use('/api/attends', require('./routes/attend.routes'))
 app.use('/api/favorites', require('./routes/favoriteShop.routes'))
 app.use('/api/payments', require('./routes/payment.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
-app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.use('/api/reports', require('./routes/report.routes'))
+app.get('api/message/', (req, res) =>{
+  res.json({status: 'ok', message: 'Por causa de COVID-19 los bares y discotecas no pueden abrir, pero tan pronto puedan te avisaremos, por el momento síguelos y mira el contenido que tienen para ti'})
+})
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
       amount: 40000 * 100,
