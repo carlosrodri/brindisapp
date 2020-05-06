@@ -57,6 +57,7 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
+app.use('/api/reports', require('./routes/report.routes'))
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
       amount: 40000 * 100,
