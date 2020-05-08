@@ -23,6 +23,8 @@ const {
 
 // Settimgs
 app.set('port', process.env.PORT || 3002);
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 
 //Middlewares
 app.use(bodyParser.json())
@@ -57,8 +59,14 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.use('/api/reports', require('./routes/report.routes'))
-app.get('/api/message/', (req, res) =>{
-  res.json({status: 'ok', message: 'Por causa de COVID-19 los bares y discotecas no pueden abrir, pero tan pronto puedan te avisaremos, por el momento síguelos y mira el contenido que tienen para ti'})
+app.get('/main', (req, res) => {
+  res.render('main', { title: 'Brindis'})
+})
+app.get('/api/message/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Por causa de COVID-19 los bares y discotecas no pueden abrir, pero tan pronto puedan te avisaremos, por el momento síguelos y mira el contenido que tienen para ti'
+  })
 })
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
