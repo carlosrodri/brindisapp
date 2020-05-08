@@ -62,6 +62,9 @@ app.use('/api/reports', require('./routes/report.routes'))
 app.get('/main', (req, res) => {
   res.render('main', { title: 'Brindis'})
 })
+/*app.get('/privacy-politics', (req, res) => {
+  res.render('privacy-politics', { title: 'Politica de Privacidad'})
+})*/
 app.get('/api/message/', (req, res) => {
   res.json({
     status: 'ok',
