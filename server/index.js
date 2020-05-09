@@ -59,7 +59,7 @@ app.use('/api/sites', require('./routes/sites.routes'))
 app.use('/api/matches', require('./routes/match.routes'))
 app.use('/api/codes', require('./routes/codes.routes'))
 app.use('/api/reports', require('./routes/report.routes'))
-app.get('/main', (req, res) => {
+app.get('', (req, res) => {
   res.render('main', { title: 'Brindis'})
 })
 /*app.get('/privacy-politics', (req, res) => {
