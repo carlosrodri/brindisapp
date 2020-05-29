@@ -70,7 +70,7 @@ shopController.getShopByMail = async (req, res) => {
     const shop = await Shop.findOne({
         'mail': req.params.mail
     });
-    if (shop === undefined) {
+    if (!shop) {
         console.log('undepaila');
 
         res.json({
