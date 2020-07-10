@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const Code = require('./models/code')
 const stripe = require('stripe')('sk_live_2eSkHSBMQDLGDSbPN7VlGi2M00aNO46BvI')
+
 cloudinary.config({
   cloud_name: 'brindis',
   api_key: '191576662983511',
@@ -20,57 +21,71 @@ app.use(cors())
 const {
   mongoose
 } = require('./database');
+const { settings } = require('cluster');
 
 // Settimgs
-app.set('port', process.env.PORT || 3002);
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
+function settings(){
+  app.set('port', process.env.PORT || 3002);
+  app.set('view engine', 'ejs')
+  app.set('views', path.join(__dirname, 'views'))
+}
+
+this.settings();
 
 //Middlewares
-app.use(bodyParser.json())
-app.set('etag', false)
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-app.use(morgan('dev'));
-app.use(express.json());
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, 'public/images'),
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, new Date().getTime() + path.extname(file.originalname))
-  }
-})
-app.use(multer({
-  storage
-}).single('image'))
+function middlewares(){
+  app.use(bodyParser.json())
+  app.set('etag', false)
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }))
+  app.use(morgan('dev'));
+  app.use(express.json());
+  const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/images'),
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, new Date().getTime() + path.extname(file.originalname))
+    }
+  })
+  app.use(multer({
+    storage
+  }).single('image'))
+}
+
+this.middlewares();
 
 //Routes
-app.use('/api/users', require('./routes/user.routes'));
-app.use('/api/shops', require('./routes/shop.routes'));
-app.use('/api/states', require('./routes/state.routes'));
-app.use('/api/events', require('./routes/event.routes'));
-app.use('/api/comments', require('./routes/comment.routes'));
-app.use('/api/interesteds', require('./routes/interested.routes'))
-app.use('/api/attends', require('./routes/attend.routes'))
-app.use('/api/favorites', require('./routes/favoriteShop.routes'))
-app.use('/api/payments', require('./routes/payment.routes'))
-app.use('/api/sites', require('./routes/sites.routes'))
-app.use('/api/matches', require('./routes/match.routes'))
-app.use('/api/codes', require('./routes/codes.routes'))
-app.use('/api/reports', require('./routes/report.routes'))
-app.get('', (req, res) => {
-  res.render('main', { title: 'Brindis'})
-})
+function routes(){
+  app.use('/api/users', require('./routes/user.routes'));
+  app.use('/api/shops', require('./routes/shop.routes'));
+  app.use('/api/states', require('./routes/state.routes'));
+  app.use('/api/events', require('./routes/event.routes'));
+  app.use('/api/comments', require('./routes/comment.routes'));
+  app.use('/api/interesteds', require('./routes/interested.routes'))
+  app.use('/api/attends', require('./routes/attend.routes'))
+  app.use('/api/favorites', require('./routes/favoriteShop.routes'))
+  app.use('/api/payments', require('./routes/payment.routes'))
+  app.use('/api/sites', require('./routes/sites.routes'))
+  app.use('/api/matches', require('./routes/match.routes'))
+  app.use('/api/codes', require('./routes/codes.routes'))
+  app.use('/api/reports', require('./routes/report.routes'))
+  app.get('', (req, res) => {
+    res.render('main', { title: 'Brindis'})
+  })
+}
+this.routes();
 /*app.get('/privacy-politics', (req, res) => {
   res.render('privacy-politics', { title: 'Politica de Privacidad'})
 })*/
+
 app.get('/api/message/', (req, res) => {
   res.json({
     status: 'ok',
     message: 'Por causa de COVID-19 los bares y discotecas no pueden abrir, pero tan pronto puedan te avisaremos, por el momento síguelos y mira el contenido que tienen para ti'
   })
 })
+
 app.post('/api/payment', (req, res) => {
   stripe.charges.create({
       amount: 40000 * 100,
@@ -151,34 +166,37 @@ app.post('/api/payment', (req, res) => {
     })
   });
 }, 1000)*/
-
-setTimeout(async () => {
-  if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
-    console.log('entra ' + new Date().getHours() - 5);
-
+function deleteStatus(){
+  setTimeout(async () => {
+    if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
+      console.log('entra ' + new Date().getHours() - 5);
+  
+      const status = await state.find();
+      status.forEach(element => {
+        console.log('borra ctm');
+        if (new Date().getHours() - 5 === 8) {
+          state.findByIdAndDelete(element._id, (err, res) => {
+            console.log('delete');
+          })
+        } else {}
+      });
+    }
+  }, 1000)
+  //TO-DO llamar al metodo de routes para eliminar todos los estados
+  setInterval(async function clearStatus() {
     const status = await state.find();
     status.forEach(element => {
       console.log('borra ctm');
-      if (new Date().getHours() - 5 === 8) {
+      if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
         state.findByIdAndDelete(element._id, (err, res) => {
           console.log('delete');
         })
       } else {}
     });
-  }
-}, 1000)
-//TO-DO llamar al metodo de routes para eliminar todos los estados
-setInterval(async function clearStatus() {
-  const status = await state.find();
-  status.forEach(element => {
-    console.log('borra ctm');
-    if (new Date().getHours() - 5 >= 8 && new Date().getHours() - 5 <= 17) {
-      state.findByIdAndDelete(element._id, (err, res) => {
-        console.log('delete');
-      })
-    } else {}
-  });
-}, 86400000)
+  }, 86400000)
+}
+
+this.deleteStatus();
 
 //Starting server
 app.listen(app.get('port'), () => {
