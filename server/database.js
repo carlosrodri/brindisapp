@@ -7,8 +7,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 const UR = 'mongodb://localhost/bar'
-const URIM = 'mongodb://admin:tuyxib4rhCdTMZrc@SG-brindis-31778.servers.mongodirector.com:51690,SG-brindis-31779.servers.mongodirector.com:51690,SG-brindis-31780.servers.mongodirector.com:51690/admin?replicaSet=RS-brindis-0&ssl=true'
-const MONGO_DB_URI = 'mongodb+srv://admin:abc.52106@cluster0-5cmep.mongodb.net/test?retryWrites=true&w=majority'
+const URIM = ''
+const MONGO_DB_URI = ''
 
 /*const MongoClient = require('mongod').MongoClient();
 const uri = "mongodb+srv://admin:abc.52106@cluster0-5cmep.mongodb.net/test?retryWrites=true&w=majority";
