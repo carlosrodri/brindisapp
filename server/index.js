@@ -8,12 +8,12 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const Code = require('./models/code')
-const stripe = require('stripe')('sk_live_2eSkHSBMQDLGDSbPN7VlGi2M00aNO46BvI')
+const stripe = require('stripe')('')
 
 cloudinary.config({
   cloud_name: 'brindis',
-  api_key: '191576662983511',
-  api_secret: 'Qeun7RcD5siRko0O1WObghNkmEY'
+  api_key: '',
+  api_secret: ''
 })
 
 app.use(cors())
